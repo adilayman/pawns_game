@@ -1,0 +1,4 @@
+#Sat Jul 03 22:31:48 CEST 2021
+base.0=/home/ayman/Desktop/info2051_2018/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
