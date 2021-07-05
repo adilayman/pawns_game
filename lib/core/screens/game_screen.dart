@@ -43,7 +43,9 @@ class _GamePainter extends CustomPainter {
   _GamePainter(this.game);
 
   @override
-  void paint(Canvas canvas, Size size) => game.render(canvas, size);
+  void paint(Canvas canvas, Size size) {
+    game.render(canvas, size);
+  }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;

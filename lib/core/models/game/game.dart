@@ -17,6 +17,8 @@ abstract class Game with ChangeNotifier {
     _gameTicker.start();
   }
 
+  void notify() => notifyListeners();
+
   /// update the game components at each frame
   void update(double dt) {
     int nUpdates = 0;

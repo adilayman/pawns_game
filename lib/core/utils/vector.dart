@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'dart:ui';
+
 /// Point presentation
 class Vector {
   double x, y;
@@ -14,4 +16,6 @@ class Vector {
   double unit() {
     return sqrt(x * x + y * y);
   }
+
+  Offset toOffset() => Offset(x, y);
 }
