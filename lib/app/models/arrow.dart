@@ -15,14 +15,28 @@ class Arrow extends GameEntity {
     endPoint = Vector(point.x, point.y);
   }
 
+  void calculateEndPoint(Offset position) {
+    double distance = sqrt((position.dx - x) * (position.dx - x) +
+        (position.dy - y) * (position.dy - y));
+
+    double length = 0;
+
+    if (distance < 30)
+      length = 30;
+    else if (distance >= 30 && distance < 50)
+      length = 40;
+    else
+      length = 60;
+
+    endPoint.x = x + length * cos(angle);
+    endPoint.y = y - length * sin(angle);
+  }
+
   @override
   void render(Canvas canvas) {
     final paint = Paint();
     paint.color = _color;
     paint.strokeWidth = 3;
-
-    endPoint.x = x + 100 * cos(angle);
-    endPoint.y = y - 100 * sin(angle);
 
     canvas.drawLine(Offset(x, y), Offset(endPoint.x, endPoint.y), paint);
 

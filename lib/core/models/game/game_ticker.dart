@@ -11,15 +11,14 @@ class GameTicker {
   }
 
   void _onTick(Duration current) {
-    Duration dt =
-        _previous == Duration.zero ? Duration.zero : current - _previous;
-
+    Duration dt = current - _previous;
     _previous = current;
-
     _update(dt.inMilliseconds / 1000);
   }
 
-  void start() => _ticker.start();
+  void start() {
+    if (!_ticker.isActive) _ticker.start();
+  }
 
   void stop() => _ticker.stop();
 
@@ -28,5 +27,8 @@ class GameTicker {
     _ticker.muted = true;
   }
 
-  void restart() => _ticker.muted = false;
+  void restart() {
+    _previous = Duration.zero;
+    _ticker.muted = false;
+  }
 }

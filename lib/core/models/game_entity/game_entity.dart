@@ -7,7 +7,7 @@ abstract class GameEntity {
   Vector _coordinate;
   Vector velocity = Vector(0, 0);
 
-  double speed = 10;
+  double speed = 15;
 
   Game game;
 

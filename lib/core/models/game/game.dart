@@ -8,6 +8,8 @@ abstract class Game with ChangeNotifier {
 
   Vector collisionP = Vector(0, 0); // for tests
 
+  Size size = Size(0, 0);
+
   late List<GameEntity> _entities = [];
 
   Game() {

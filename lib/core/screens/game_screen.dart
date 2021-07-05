@@ -14,6 +14,7 @@ abstract class GameView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    game.size = MediaQuery.of(context).size;
     return ChangeNotifierProvider(
       create: (context) => game,
       child: Consumer<Game>(
