@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:info2051_2018/app/screens/game_modes_screens/normal_mode_screen.dart';
+import 'package:info2051_2018/app/screens/game_modes_screens/soccer_mode_screen/soccer_mode_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NormalModeView(),
+      home: SoccerModeView(),
     );
   }
 }

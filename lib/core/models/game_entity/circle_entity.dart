@@ -13,7 +13,7 @@ abstract class CircleEntity extends GameEntity {
 
   @override
   void render(Canvas canvas) {
-    final paint = Paint();
+    Paint paint = Paint();
     paint.color = _color;
     var center = Offset(coordinate.x, coordinate.y);
     canvas.drawCircle(center, radius, paint);

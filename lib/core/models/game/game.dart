@@ -8,7 +8,7 @@ abstract class Game with ChangeNotifier {
 
   Vector collisionP = Vector(0, 0); // for tests
 
-  Size size = Size(0, 0);
+  Size _size = Size(0, 0);
 
   late List<GameEntity> _entities = [];
 
@@ -16,6 +16,8 @@ abstract class Game with ChangeNotifier {
     _gameTicker = GameTicker(update);
     _gameTicker.start();
   }
+
+  void init(Size size) => _size = size;
 
   void notify() => notifyListeners();
 

@@ -54,8 +54,8 @@ class Pawn extends CircleEntity {
       return false;
     }
 
-    coordinate.x += dt * velocity.x * 12;
-    coordinate.y += dt * velocity.y * 12;
+    coordinate.x += dt * velocity.x * 7;
+    coordinate.y += dt * velocity.y * 7;
 
     if (coordinate.y <= 65) moving = false;
 
@@ -120,8 +120,6 @@ class Pawn extends CircleEntity {
 
     velocity.x = speed * cos(angle);
     velocity.y = -speed * sin(angle);
-
-    print(velocity.y);
 
     moving = true;
     frames = 30;
