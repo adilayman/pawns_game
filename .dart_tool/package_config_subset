@@ -1,5 +1,5 @@
 info2051_2018
-2.12
+2.0
 file:///home/ayman/Desktop/info2051_2018/
 file:///home/ayman/Desktop/info2051_2018/lib/
 async
@@ -27,9 +27,9 @@ collection
 file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/
 file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/collection-1.15.0/lib/
 cupertino_icons
-2.12
-file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.3/
-file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.3/lib/
+2.0
+file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.3/
+file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-0.1.3/lib/
 fake_async
 2.12
 file:///home/ayman/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0/

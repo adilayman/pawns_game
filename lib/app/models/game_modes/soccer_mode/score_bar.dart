@@ -6,8 +6,8 @@ class ScoreBar {
   Vector _coordinates;
   Size _size;
 
-  late CircularProgressBar _firstAvatar;
-  late CircularProgressBar _secondAvatar;
+  CircularProgressBar _firstAvatar;
+  CircularProgressBar _secondAvatar;
 
   ScoreBar(this._coordinates, this._size) {
     _firstAvatar = CircularProgressBar(

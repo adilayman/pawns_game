@@ -8,7 +8,7 @@ import 'package:info2051_2018/core/utils/vector.dart';
 /// Circle Entity presentation
 class Arrow extends GameEntity {
   Color _color;
-  late Vector endPoint;
+  Vector endPoint;
   double angle = 0;
 
   Arrow(Vector point, this._color, game) : super(point, game) {

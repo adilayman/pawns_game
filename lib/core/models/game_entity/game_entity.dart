@@ -10,7 +10,7 @@ abstract class GameEntity {
 
   double speed = 15;
 
-  late ImageLoader imageLoader;
+  ImageLoader imageLoader;
 
   Game game;
 

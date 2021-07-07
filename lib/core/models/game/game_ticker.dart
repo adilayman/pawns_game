@@ -1,7 +1,7 @@
 import 'package:flutter/scheduler.dart';
 
 class GameTicker {
-  late Ticker _ticker;
+  Ticker _ticker;
   Function _update;
 
   Duration _previous = Duration.zero;

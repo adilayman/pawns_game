@@ -16,22 +16,21 @@ class Pawn extends CircleEntity {
 
   int frames = 0;
 
-  late Arrow _arrow;
+  Arrow _arrow;
 
   bool _waitingForLoad = true;
 
   Pawn(Vector point, Color color, Game game) : super(point, 30, color, game) {
     _arrow = Arrow(point, Colors.black, game);
-    imageLoader =
-        ImageLoader("lib/app/images/pawns/blue_pawn.png", Size(60, 60))
-          ..loadImage();
+    imageLoader = ImageLoader("lib/app/images/pawns/blue_pawn.png")
+      ..loadImage();
   }
 
   @override
   void render(Canvas canvas) {
     super.render(canvas);
 
-    if (imageLoader.isLoaded)
+    if (imageLoader.image != null)
       canvas.drawImageRect(
         imageLoader.image,
         Rect.fromLTWH(0, 0, imageLoader.image.width.toDouble(),
@@ -76,7 +75,7 @@ class Pawn extends CircleEntity {
 
           var nx = -dx / nl;
           var ny = -dy / nl;
-          // calculate new velocity: v' = v - 2 * dot(d, v) * n
+          // calcunew velocity: v' = v - 2 * dot(d, v) * n
           double dot = velocity.x * nx + velocity.y * ny;
           velocity.x -= 2 * dot * nx;
           velocity.y -= 2 * dot * ny;

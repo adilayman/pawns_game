@@ -1,29 +1,40 @@
 import 'dart:async';
 import 'dart:typed_data';
-import 'dart:ui';
 import 'package:flutter/services.dart';
 
 import 'dart:ui' as ui;
 
 class ImageLoader {
   String _pathname;
-  Size _size;
-  bool _isLoaded = false;
 
-  late ui.Image _image;
+  ui.Image _image;
 
-  ImageLoader(this._pathname, this._size);
+  Function onLoad;
+
+  ImageLoader(this._pathname, {this.onLoad});
 
   Future<Null> loadImage() async {
     _image = await _loadFutureImage(_pathname);
+
+    if (onLoad != null) {
+      Stream stream = Stream<ui.Image>.fromFuture(_loadFutureImage(_pathname));
+      stream.listen((event) => onLoad());
+    }
   }
 
   Future<ui.Image> _loadFutureImage(String imageAssetPath) async {
     final ByteData data = await rootBundle.load(imageAssetPath);
     final Completer<ui.Image> completer = Completer();
     ui.decodeImageFromList(Uint8List.view(data.buffer), (ui.Image img) {
-      _isLoaded = true;
-      print("true");
+      // if (onLoad != null) {
+      //   Stream stream =
+      //       Stream<ui.Image>.fromFuture(_loadFutureImage(_pathname));
+      //   StreamSubscription streamSub;
+      //   streamSub = stream.listen((event) {
+      //     onLoad();
+      //     streamSub.cancel();
+      //   });
+      // }
       return completer.complete(img);
     });
     return completer.future;
@@ -31,5 +42,5 @@ class ImageLoader {
 
   ui.Image get image => _image;
 
-  bool get isLoaded => _isLoaded;
+  bool get isLoaded => _image != null;
 }

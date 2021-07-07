@@ -5,10 +5,10 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 abstract class GameView extends StatelessWidget {
-  late _GamePainter painter;
-  late Game game;
+  _GamePainter painter;
+  Game game;
 
-  GameView({required this.game, required Color backgroundColor}) {
+  GameView({@required this.game, @required Color backgroundColor}) {
     painter = _GamePainter(this.game);
   }
 

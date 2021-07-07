@@ -4,13 +4,13 @@ import 'package:info2051_2018/core/models/game_entity/game_entity.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
 
 abstract class Game with ChangeNotifier {
-  late GameTicker _gameTicker;
+  GameTicker _gameTicker;
 
   Vector collisionP = Vector(0, 0); // for tests
 
   Size _size = Size(0, 0);
 
-  late List<GameEntity> _entities = [];
+  List<GameEntity> _entities = [];
 
   Game() {
     _gameTicker = GameTicker(update);
