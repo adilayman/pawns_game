@@ -8,6 +8,16 @@ class SoccerField {
 
   SoccerField(this._coordinates, this._size);
 
+  Vector get topLeft => _coordinates;
+
+  Vector get topRight => Vector(_coordinates.x + _size.width, _coordinates.y);
+
+  Vector get bottomLeft =>
+      Vector(_coordinates.x, _coordinates.y + _size.height);
+
+  Vector get bottomRight =>
+      Vector(_coordinates.x + _size.width, _coordinates.y + _size.height);
+
   void _drawBorders(Canvas canvas) {
     Paint paint = Paint()
       ..color = Colors.white

@@ -19,8 +19,6 @@ abstract class Game with ChangeNotifier {
 
   void init(Size size) => _size = size;
 
-  void notify() => notifyListeners();
-
   /// update the game components at each frame
   void update(double dt) {
     int nUpdates = 0;

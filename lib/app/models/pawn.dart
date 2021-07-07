@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_mode.dart';
 import 'package:info2051_2018/core/models/game/game.dart';
 import 'package:info2051_2018/app/models/arrow.dart';
 import 'package:info2051_2018/core/models/game_entity/circle_entity.dart';
@@ -54,8 +55,8 @@ class Pawn extends CircleEntity {
       return false;
     }
 
-    coordinate.x += dt * velocity.x * 7;
-    coordinate.y += dt * velocity.y * 7;
+    coordinate.x += dt * velocity.x;
+    coordinate.y += dt * velocity.y;
 
     if (coordinate.y <= 65) moving = false;
 
@@ -80,8 +81,8 @@ class Pawn extends CircleEntity {
           velocity.x -= 2 * dot * nx;
           velocity.y -= 2 * dot * ny;
 
-          entity.velocity.x += 2 * dot * nx;
-          entity.velocity.y += 2 * dot * ny;
+          entity.velocity.x += dot * nx;
+          entity.velocity.y += dot * ny;
 
           entity.frames = 5;
           entity.moving = true;
@@ -90,6 +91,28 @@ class Pawn extends CircleEntity {
         }
       }
     });
+
+    SoccerMode g = game as SoccerMode;
+
+    if (x - radius <= g.field.topLeft.x) {
+      x = g.field.topLeft.x + radius;
+      velocity.x *= -1;
+    }
+
+    if (x + radius >= g.field.topRight.x) {
+      x = g.field.topRight.x - radius;
+      velocity.x *= -1;
+    }
+
+    if (y - radius <= g.field.topLeft.y) {
+      y = g.field.topLeft.y + radius;
+      velocity.y *= -1;
+    }
+
+    if (y + radius >= g.field.bottomRight.y) {
+      y = g.field.bottomRight.y - radius;
+      velocity.y *= -1;
+    }
 
     //print(coordinate.x);
 
@@ -117,6 +140,8 @@ class Pawn extends CircleEntity {
     if (!_startPress) return;
 
     double angle = pi - atan2(position.dy - y, position.dx - x);
+
+    speed = 200;
 
     velocity.x = speed * cos(angle);
     velocity.y = -speed * sin(angle);
