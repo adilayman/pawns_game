@@ -15,7 +15,7 @@ class SoccerTeam extends GameEntity {
   SoccerTeam(Game game, String image) : super(Vector(0, 0), game) {
     _imageLoader = ImageLoader(image, onLoad: onImageLoad);
     _imageLoader.loadImage();
-    pawns.add(Pawn(Vector(200, 200), Colors.red.shade900, game));
+    pawns.add(Pawn(Vector(200, 200), game));
 
     //pawns.add(Pawn(Vector(200, 300), Colors.red.shade900, game));
   }

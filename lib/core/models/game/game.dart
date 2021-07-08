@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:info2051_2018/core/models/game/game_ticker.dart';
 import 'package:info2051_2018/core/models/game_entity/game_entity.dart';
-import 'package:info2051_2018/core/utils/vector.dart';
 
 abstract class Game with ChangeNotifier {
   GameTicker _gameTicker;
-
-  Vector collisionP = Vector(0, 0); // for tests
-
-  Size size = Size(0, 0);
+  Size size = Size.zero;
 
   List<GameEntity> _entities = [];
 
@@ -21,9 +17,7 @@ abstract class Game with ChangeNotifier {
 
   void init(Size size) => this.size = size;
 
-  void requestUpdate() {
-    requestedUpdate = true;
-  }
+  void requestUpdate() => requestedUpdate = true;
 
   /// update the game components at each frame
   void update(double dt) {

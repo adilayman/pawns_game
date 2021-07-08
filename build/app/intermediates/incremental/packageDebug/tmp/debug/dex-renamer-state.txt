@@ -1,4 +1,4 @@
-#Thu Jul 08 01:18:18 CEST 2021
+#Thu Jul 08 18:46:13 CEST 2021
 base.0=/home/ayman/Desktop/info2051_2018/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

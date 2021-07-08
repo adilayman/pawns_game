@@ -21,7 +21,7 @@ class CircularProgressBar {
       ..color = initialColor
       ..strokeWidth = 3
       ..style = PaintingStyle.stroke;
-    canvas.drawCircle(_center.toOffset(), _radius, paint);
+    canvas.drawCircle(_center.toOffset, _radius, paint);
   }
 
   void _renderProgressCircle(Canvas canvas) {

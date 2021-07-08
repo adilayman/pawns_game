@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:info2051_2018/core/models/game/game.dart';
-import 'package:info2051_2018/core/utils/image_loader.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
 
 /// GameEntity presentation
@@ -9,8 +8,6 @@ abstract class GameEntity {
   Vector velocity = Vector(0, 0);
 
   double speed = 15;
-
-  ImageLoader imageLoader;
 
   Game game;
 

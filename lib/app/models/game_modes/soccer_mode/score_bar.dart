@@ -27,9 +27,9 @@ class ScoreBar {
         Color.fromRGBO(255, 255, 255, 0.75),
         Color.fromRGBO(255, 255, 255, 0.75),
       ],
-    ).createShader(_coordinates.toOffset() & _size);
+    ).createShader(_coordinates.toOffset & _size);
 
-    canvas.drawRect(_coordinates.toOffset() & _size, paint);
+    canvas.drawRect(_coordinates.toOffset & _size, paint);
   }
 
   void _renderAvatars(Canvas canvas) {

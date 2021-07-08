@@ -7,7 +7,6 @@ import 'package:info2051_2018/core/models/game/game.dart';
 import 'package:info2051_2018/app/models/arrow.dart';
 import 'package:info2051_2018/core/models/game_entity/circle_entity.dart';
 import 'package:info2051_2018/core/utils/collision.dart';
-import 'package:info2051_2018/core/utils/image_loader.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
 
 class Pawn extends CircleEntity {
@@ -22,10 +21,8 @@ class Pawn extends CircleEntity {
 
   ui.Image _image;
 
-  Pawn(Vector point, Color color, Game game) : super(point, 30, color, game) {
+  Pawn(Vector point, Game game) : super(point, 30, Colors.red.shade900, game) {
     _arrow = Arrow(point, Colors.white54, game);
-    imageLoader = ImageLoader("lib/app/images/pawns/blue_pawn.png")
-      ..loadImage();
   }
 
   void loadImage(ui.Image image) => _image = image;
@@ -49,28 +46,14 @@ class Pawn extends CircleEntity {
   @override
   bool update(double dt) {
     if (_startPress) return true;
-    if (!moving) {
-      if (_waitingForLoad && imageLoader.isLoaded) {
-        _waitingForLoad = false;
-        return true;
-      }
-      return false;
-    }
+    if (!moving) return false;
 
     coordinate.x += dt * velocity.x;
     coordinate.y += dt * velocity.y;
 
-    if (coordinate.y <= 65) moving = false;
-
     game.entities.forEach((entity) {
       if (!identical(this, entity) && entity is Pawn) {
         if (circleCollision(this, entity)) {
-          game.collisionP.x = ((x * entity.radius) + (entity.x * radius)) /
-              (radius + entity.radius);
-
-          game.collisionP.y = ((y * entity.radius) + (entity.y * radius)) /
-              (radius + entity.radius);
-
           double dx = x - entity.x;
           double dy = y - entity.y;
 
@@ -97,8 +80,8 @@ class Pawn extends CircleEntity {
     SoccerMode g = game as SoccerMode;
 
     if (x - radius <= g.field.topLeft.x &&
-        !(y - radius > game.size.height * 0.35 &&
-            y < game.size.height * 0.35 + game.size.height * 0.5)) {
+        !(y - radius >= game.size.height * 0.4 &&
+            y <= game.size.height * 0.4 + game.size.height * 0.4)) {
       x = g.field.topLeft.x + radius;
       velocity.x *= -1;
     }
@@ -118,7 +101,10 @@ class Pawn extends CircleEntity {
       velocity.y *= -1;
     }
 
-    //print(coordinate.x);
+    if (x - radius <= 0) {
+      x = radius;
+      velocity.x *= -1;
+    }
 
     if (frames-- == 0) moving = false;
 

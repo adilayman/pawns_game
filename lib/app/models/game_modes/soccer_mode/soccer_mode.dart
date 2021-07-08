@@ -78,7 +78,7 @@ class SoccerMode extends Game {
         Rect.fromLTWH(0, 0, _goalImage.image.width.toDouble(),
             _goalImage.image.height.toDouble()),
         Rect.fromLTWH(
-            0, size.height * 0.35, size.width * 0.075, size.height * 0.5),
+            0, size.height * 0.4, size.width * 0.075, size.height * 0.4),
         Paint(),
       );
     }

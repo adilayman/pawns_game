@@ -17,5 +17,9 @@ class Vector {
     return sqrt(x * x + y * y);
   }
 
-  Offset toOffset() => Offset(x, y);
+  Offset get toOffset => Offset(x, y);
+
+  Size get toSize => Size(x, y);
+
+  static Vector zero = Vector(0.0, 0.0);
 }
