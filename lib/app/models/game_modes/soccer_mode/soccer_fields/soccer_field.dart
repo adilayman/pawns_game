@@ -34,8 +34,8 @@ class SoccerField {
 
   void _drawField(Canvas canvas) {
     Paint paint = Paint()
-      ..color = Colors.green.shade800
-      ..style = PaintingStyle.fill;
+      ..style = PaintingStyle.fill
+      ..color = Color.fromRGBO(0, 0, 0, 0.25);
 
     canvas.drawRect(_coordinates.toOffset() & _size, paint);
   }

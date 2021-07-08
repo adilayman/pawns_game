@@ -8,16 +8,22 @@ abstract class Game with ChangeNotifier {
 
   Vector collisionP = Vector(0, 0); // for tests
 
-  Size _size = Size(0, 0);
+  Size size = Size(0, 0);
 
   List<GameEntity> _entities = [];
+
+  bool requestedUpdate = false;
 
   Game() {
     _gameTicker = GameTicker(update);
     _gameTicker.start();
   }
 
-  void init(Size size) => _size = size;
+  void init(Size size) => this.size = size;
+
+  void requestUpdate() {
+    requestedUpdate = true;
+  }
 
   /// update the game components at each frame
   void update(double dt) {
@@ -25,7 +31,11 @@ abstract class Game with ChangeNotifier {
     entities.forEach((element) {
       if (element.update(dt)) nUpdates++;
     });
-    if (nUpdates > 0) notifyListeners();
+
+    if (nUpdates > 0 || requestedUpdate) {
+      requestedUpdate = false;
+      notifyListeners();
+    }
   }
 
   void render(Canvas canvas, Size size) {

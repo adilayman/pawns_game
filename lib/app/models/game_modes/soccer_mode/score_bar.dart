@@ -18,20 +18,16 @@ class ScoreBar {
   }
 
   void _renderBar(Canvas canvas) {
-    Paint paint = Paint()
-      ..color = Colors.grey.shade300
-      ..style = PaintingStyle.fill;
-    canvas.drawRect(_coordinates.toOffset() & _size, paint);
+    Paint paint = Paint();
 
-    // paint.shader = LinearGradient(
-    //   begin: Alignment.topRight,
-    //   end: Alignment.bottomLeft,
-    //   colors: [
-    //     Colors.red.shade400,
-    //     Colors.grey,
-    //     Colors.blue.shade400,
-    //   ],
-    // ).createShader(_coordinates.toOffset() & _size);
+    paint.shader = LinearGradient(
+      begin: Alignment.topRight,
+      end: Alignment.bottomLeft,
+      colors: [
+        Color.fromRGBO(255, 255, 255, 0.75),
+        Color.fromRGBO(255, 255, 255, 0.75),
+      ],
+    ).createShader(_coordinates.toOffset() & _size);
 
     canvas.drawRect(_coordinates.toOffset() & _size, paint);
   }

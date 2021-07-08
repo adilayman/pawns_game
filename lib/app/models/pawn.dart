@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'dart:ui';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_mode.dart';
@@ -20,25 +20,28 @@ class Pawn extends CircleEntity {
 
   bool _waitingForLoad = true;
 
+  ui.Image _image;
+
   Pawn(Vector point, Color color, Game game) : super(point, 30, color, game) {
-    _arrow = Arrow(point, Colors.black, game);
+    _arrow = Arrow(point, Colors.white54, game);
     imageLoader = ImageLoader("lib/app/images/pawns/blue_pawn.png")
       ..loadImage();
   }
 
+  void loadImage(ui.Image image) => _image = image;
+
   @override
   void render(Canvas canvas) {
-    super.render(canvas);
-
-    if (imageLoader.image != null)
+    if (_image != null)
       canvas.drawImageRect(
-        imageLoader.image,
-        Rect.fromLTWH(0, 0, imageLoader.image.width.toDouble(),
-            imageLoader.image.height.toDouble()),
+        _image,
+        Rect.fromLTWH(0, 0, _image.width.toDouble(), _image.height.toDouble()),
         Rect.fromLTWH(coordinate.x - radius, coordinate.y - radius, 2 * radius,
             2 * radius),
         Paint(),
       );
+    else
+      super.render(canvas);
 
     if (_startPress) _arrow.render(canvas);
   }
@@ -93,7 +96,9 @@ class Pawn extends CircleEntity {
 
     SoccerMode g = game as SoccerMode;
 
-    if (x - radius <= g.field.topLeft.x) {
+    if (x - radius <= g.field.topLeft.x &&
+        !(y - radius > game.size.height * 0.35 &&
+            y < game.size.height * 0.35 + game.size.height * 0.5)) {
       x = g.field.topLeft.x + radius;
       velocity.x *= -1;
     }
