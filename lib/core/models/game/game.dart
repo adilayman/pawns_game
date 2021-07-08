@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:info2051_2018/core/models/game/game_ticker.dart';
+import 'package:info2051_2018/core/models/game/game_loop.dart';
 import 'package:info2051_2018/core/models/game_entity/game_entity.dart';
 
 abstract class Game with ChangeNotifier {
-  GameTicker _gameTicker;
+  GameLoop _gameLoop;
   Size size = Size.zero;
 
   List<GameEntity> _entities = [];
@@ -11,8 +11,7 @@ abstract class Game with ChangeNotifier {
   bool requestedUpdate = false;
 
   Game() {
-    _gameTicker = GameTicker(update);
-    _gameTicker.start();
+    _gameLoop = GameLoop(update, running: true);
   }
 
   void init(Size size) => this.size = size;

@@ -17,8 +17,6 @@ class Pawn extends CircleEntity {
 
   Arrow _arrow;
 
-  bool _waitingForLoad = true;
-
   ui.Image _image;
 
   Pawn(Vector point, Game game) : super(point, 30, Colors.red.shade900, game) {

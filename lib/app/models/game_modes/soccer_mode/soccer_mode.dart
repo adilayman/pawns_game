@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -19,13 +20,11 @@ class SoccerMode extends Game {
   ImageLoader _goalImage;
 
   SoccerMode() {
-    //addEntity(Pawn(Vector(430, 200), Colors.red.shade900, this));
+    _firstTeam = SoccerTeam(this, "lib/app/images/pawns/red_pawn.png");
+    _secondTeam = SoccerTeam(this, "lib/app/images/pawns/blue_pawn.png");
 
-    //addEntity(Pawn(Vector(500, 200), Colors.blue.shade900, this));
-    //addEntity(Pawn(Vector(580, 100), Colors.blue.shade900, this));
-
-    addEntity(SoccerTeam(this, "lib/app/images/pawns/red_pawn.png"));
-    //addEntity(SoccerTeam(this, "lib/app/images/pawns/red_pawn.png"));
+    addEntity(_firstTeam);
+    addEntity(_secondTeam);
 
     _backgroundImage = ImageLoader(
         "lib/app/images/backgrounds/soccer_background.png",
@@ -51,7 +50,8 @@ class SoccerMode extends Game {
 
     field = SoccerField(
       Vector(size.width * 0.075, size.height * 0.2),
-      Size(size.width * 0.8, size.height - scoreBarSize.height),
+      Size(size.width - 2 * size.width * 0.075,
+          size.height - scoreBarSize.height),
     );
   }
 
@@ -72,6 +72,10 @@ class SoccerMode extends Game {
 
     super.render(canvas, size);
 
+    canvas.save();
+
+    //canvas.skew(-1, -1);
+
     if (_goalImage.isLoaded) {
       canvas.drawImageRect(
         _goalImage.image,
@@ -82,5 +86,6 @@ class SoccerMode extends Game {
         Paint(),
       );
     }
+    canvas.restore();
   }
 }
