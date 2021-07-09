@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:info2051_2018/app/models/pawn.dart';
+import 'package:info2051_2018/app/models/game_modes/soccer_mode/pawn.dart';
 import 'package:info2051_2018/core/models/game/game.dart';
 import 'package:info2051_2018/core/models/game_entity/game_entity.dart';
 import 'package:info2051_2018/core/utils/image_loader.dart';
@@ -16,6 +16,7 @@ class SoccerTeam extends GameEntity {
     _imageLoader = ImageLoader(image, onLoad: onImageLoad);
     _imageLoader.loadImage();
     pawns.add(Pawn(Vector(200, 200), game));
+    pawns.add(Pawn(Vector(300, 200), game));
 
     //pawns.add(Pawn(Vector(200, 300), Colors.red.shade900, game));
   }
