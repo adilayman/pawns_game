@@ -9,6 +9,10 @@ abstract class GameEntity {
 
   double speed = 15;
 
+  bool moving = false;
+
+  int frames = 0;
+
   Game game;
 
   GameEntity(this._coordinate, this.game);

@@ -26,15 +26,6 @@ class ImageLoader {
     final ByteData data = await rootBundle.load(imageAssetPath);
     final Completer<ui.Image> completer = Completer();
     ui.decodeImageFromList(Uint8List.view(data.buffer), (ui.Image img) {
-      // if (onLoad != null) {
-      //   Stream stream =
-      //       Stream<ui.Image>.fromFuture(_loadFutureImage(_pathname));
-      //   StreamSubscription streamSub;
-      //   streamSub = stream.listen((event) {
-      //     onLoad();
-      //     streamSub.cancel();
-      //   });
-      // }
       return completer.complete(img);
     });
     return completer.future;

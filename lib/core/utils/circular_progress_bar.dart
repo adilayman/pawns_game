@@ -25,16 +25,17 @@ class CircularProgressBar {
   }
 
   void _renderProgressCircle(Canvas canvas) {
+    Paint paint = Paint()
+      ..color = progressColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 4;
+
     Rect rect = Rect.fromLTWH(
         _center.x - _radius, _center.y - _radius, 2 * _radius, 2 * _radius);
 
     double startAngle = -pi / 2;
     double currentAngle = 2 * currentValue * pi / _maxValue;
 
-    Paint paint = Paint()
-      ..color = progressColor
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4;
     canvas.drawArc(rect, startAngle, currentAngle, false, paint);
   }
 

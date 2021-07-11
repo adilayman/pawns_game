@@ -7,8 +7,10 @@ import 'dart:ui' as ui;
 
 class Ball extends CircleEntity {
   ui.Image _image;
+  Function collisionSys;
 
-  Ball(Vector point, Game game) : super(point, 30, Colors.red.shade900, game);
+  Ball(Vector point, Game game, {this.collisionSys})
+      : super(point, 20, Colors.red.shade900, game);
 
   @override
   void render(Canvas canvas) {
@@ -35,6 +37,15 @@ class Ball extends CircleEntity {
 
   @override
   bool update(double dt) {
-    return false;
+    if (!moving) return false;
+
+    coordinate.x += dt * velocity.x;
+    coordinate.y += dt * velocity.y;
+
+    if (collisionSys != null) collisionSys(this);
+
+    if (frames-- == 0) moving = false;
+
+    return true;
   }
 }

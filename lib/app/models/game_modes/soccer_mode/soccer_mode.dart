@@ -4,10 +4,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:info2051_2018/app/models/game_modes/ball.dart';
 import 'package:info2051_2018/app/models/game_modes/soccer_mode/score_bar.dart';
+import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_composition.dart';
 import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_fields/soccer_field.dart';
-import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_team.dart';
-import 'package:info2051_2018/app/models/game_modes/soccer_mode/pawn.dart';
+import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_entities/soccer_team.dart';
+import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_entities/pawn.dart';
 import 'package:info2051_2018/core/models/game/game.dart';
+import 'package:info2051_2018/core/models/game_entity/circle_entity.dart';
 import 'package:info2051_2018/core/utils/collision.dart';
 import 'package:info2051_2018/core/utils/image_loader.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
@@ -19,6 +21,8 @@ class SoccerMode extends Game {
   SoccerTeam _firstTeam;
   SoccerTeam _secondTeam;
 
+  SoccerComposition _composition;
+
   Ball _ball;
 
   ImageLoader _backgroundImage;
@@ -29,15 +33,11 @@ class SoccerMode extends Game {
   Pawn movingPawn;
 
   SoccerMode() {
-    _firstTeam = SoccerTeam(this, "lib/app/images/pawns/red_pawn.png");
-    _secondTeam = SoccerTeam(this, "lib/app/images/pawns/blue_pawn.png");
-
     //entities.addAll(_firstTeam.pawns);
     //entities.addAll(_secondTeam.pawns);
-    addEntity(_firstTeam);
 
     _backgroundImage = ImageLoader(
-        "lib/app/images/backgrounds/soccer_background.png",
+        "lib/app/images/backgrounds/soccer_background_1.png",
         onLoad: onImageLoad);
     _backgroundImage.loadImage();
 
@@ -68,53 +68,88 @@ class SoccerMode extends Game {
           size.height - scoreBarSize.height),
     );
 
-    _ball = Ball(Vector(100, 100), this);
+    _ball = Ball(
+        Vector(size.width * 0.075 + (size.width - 2 * size.width * 0.075) / 2,
+            size.height * 0.2 + (size.height - scoreBarSize.height) / 2),
+        this,
+        collisionSys: collisionSystem);
+    addEntity(_ball);
+
+    _composition = SoccerComposition(
+      Vector(size.width * 0.075, size.height * 0.2),
+      Size(size.width - 2 * size.width * 0.075,
+          size.height - scoreBarSize.height),
+    );
+
+    _firstTeam = SoccerTeam(this, "lib/app/images/pawns/red_pawn.png",
+        _composition.defaultComposition(TeamSide.LeftSide),
+        collisionSys: collisionSystem);
+
+    _secondTeam = SoccerTeam(this, "lib/app/images/pawns/blue_pawn.png",
+        _composition.defaultComposition(TeamSide.RightSide),
+        collisionSys: collisionSystem);
+
+    addEntity(_firstTeam);
+    addEntity(_secondTeam);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    if (movingPawn != null) {
-      _firstTeam.pawns.forEach((entity) {
-        if (!identical(movingPawn, entity)) {
-          _pawnPawnCollision(entity);
-        }
-      });
-
-      _firstTeam.pawns.forEach((pawn) {
-        _pawnFieldCollision(pawn);
-      });
-
-      movingPawn = null;
+    if (_ball.x - _ball.radius / 2 <= field.topLeft.x &&
+        (_ball.y - _ball.radius >= size.height * 0.4 &&
+            _ball.y + _ball.radius <= size.height * 0.4 + size.height * 0.4)) {
+      print("goal!!!");
     }
+
+    super.update(dt);
   }
 
-  void _pawnPawnCollision(Pawn pawn) {
-    if (circleCollision(movingPawn, pawn)) {
-      double dx = movingPawn.x - pawn.x;
-      double dy = movingPawn.y - pawn.y;
+  void collisionSystem(CircleEntity first) {
+    _firstTeam.pawns.forEach((second) {
+      _pawnPawnCollision(first, second);
+    });
+
+    _secondTeam.pawns.forEach((second) {
+      _pawnPawnCollision(first, second);
+    });
+
+    _pawnPawnCollision(first, _ball);
+    _pawnFieldCollision(first);
+  }
+
+  bool _pawnPawnCollision(CircleEntity first, CircleEntity second) {
+    if (identical(first, second)) return false;
+
+    if (circleCollision(first, second)) {
+      double dx = first.x - second.x;
+      double dy = first.y - second.y;
 
       double nl = sqrt(dx * dx + dy * dy);
 
       var nx = -dx / nl;
       var ny = -dy / nl;
       // calcunew velocity: v' = v - 2 * dot(d, v) * n
-      double dot = movingPawn.velocity.x * nx + movingPawn.velocity.y * ny;
-      movingPawn.velocity.x -= 2 * dot * nx;
-      movingPawn.velocity.y -= 2 * dot * ny;
+      double dot = first.velocity.x * nx + first.velocity.y * ny;
+      first.velocity.x -= 2 * dot * nx;
+      first.velocity.y -= 2 * dot * ny;
 
-      pawn.velocity.x += dot * nx;
-      pawn.velocity.y += dot * ny;
+      second.velocity.x += dot * nx;
+      second.velocity.y += dot * ny;
 
-      pawn.frames = 5;
-      pawn.moving = true;
+      second.frames = 5;
+      second.moving = true;
 
-      movingPawn.frames = 5;
+      first.frames = 5;
+      first.moving = true;
+
+      return true;
     }
+    return false;
   }
 
-  void _pawnFieldCollision(Pawn pawn) {
+  void _pawnFieldCollision(CircleEntity pawn) {
     if (pawn.x - pawn.radius <= field.topLeft.x &&
         !(pawn.y - pawn.radius >= size.height * 0.4 &&
             pawn.y + pawn.radius <= size.height * 0.4 + size.height * 0.4)) {

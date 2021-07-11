@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
@@ -30,6 +32,27 @@ class SoccerField {
     RRect rrectBorders = RRect.fromRectAndRadius(borders, Radius.circular(0));
 
     canvas.drawRRect(rrectBorders, paint);
+
+    canvas.drawLine(
+      Offset(_coordinates.x + _size.width / 2, _coordinates.y),
+      Offset(_coordinates.x + _size.width / 2, _coordinates.y + _size.height),
+      paint,
+    );
+
+    Rect rect = Rect.fromLTWH(_coordinates.x - 15, _coordinates.y - 15, 30, 30);
+
+    double startAngle = 0;
+    double currentAngle = pi / 2;
+
+    canvas.drawArc(rect, startAngle, currentAngle, false, paint);
+
+    paint.style = PaintingStyle.fill;
+
+    canvas.drawCircle(
+        Offset(_coordinates.x + _size.width / 2,
+            _coordinates.y + _size.height / 2),
+        5,
+        paint);
   }
 
   void _drawField(Canvas canvas) {
