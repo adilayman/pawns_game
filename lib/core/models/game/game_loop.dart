@@ -8,7 +8,7 @@ class GameLoop {
 
   Function _update;
 
-  GameLoop(this._update, {bool running = false, double fps = 60}) {
+  GameLoop(this._update, {bool running = false, double fps = 30}) {
     _running = running;
     _fps = fps;
 

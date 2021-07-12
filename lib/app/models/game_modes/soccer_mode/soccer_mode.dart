@@ -73,7 +73,7 @@ class SoccerMode extends Game {
             size.height * 0.2 + (size.height - scoreBarSize.height) / 2),
         this,
         collisionSys: collisionSystem);
-    addEntity(_ball);
+    //addEntity(_ball);
 
     _composition = SoccerComposition(
       Vector(size.width * 0.075, size.height * 0.2),
@@ -97,32 +97,78 @@ class SoccerMode extends Game {
   void update(double dt) {
     super.update(dt);
 
+    List<Pawn> pawns = [];
+
+    pawns.addAll(_firstTeam.pawns);
+    pawns.addAll(_secondTeam.pawns);
+
+    for (int i = 0; i < pawns.length; i++) {
+      for (int j = i + 1; j < pawns.length; j++) {
+        _pawnPawnCollision(pawns[i], pawns[j], dt);
+      }
+      _pawnFieldCollision(pawns[i]);
+    }
+
     if (_ball.x - _ball.radius / 2 <= field.topLeft.x &&
         (_ball.y - _ball.radius >= size.height * 0.4 &&
             _ball.y + _ball.radius <= size.height * 0.4 + size.height * 0.4)) {
       print("goal!!!");
     }
 
-    super.update(dt);
+    _scoreBar.firstAvatar.currentValue += dt;
   }
 
   void collisionSystem(CircleEntity first) {
-    _firstTeam.pawns.forEach((second) {
-      _pawnPawnCollision(first, second);
-    });
+    // _firstTeam.pawns.forEach((second) {
+    //   _pawnPawnCollision(first, second);
+    // });
 
-    _secondTeam.pawns.forEach((second) {
-      _pawnPawnCollision(first, second);
-    });
+    // _secondTeam.pawns.forEach((second) {
+    //   _pawnPawnCollision(first, second);
+    // });
 
-    _pawnPawnCollision(first, _ball);
-    _pawnFieldCollision(first);
+    // _pawnPawnCollision(first, _ball);
+    // _pawnFieldCollision(first);
   }
 
-  bool _pawnPawnCollision(CircleEntity first, CircleEntity second) {
+  void calculateNewVelocities(Pawn firstBall, Pawn secondBall, double dt) {
+    if (identical(firstBall, secondBall)) return;
+
+    if (circleCollision(firstBall, secondBall)) {
+      resolveCircle(firstBall, secondBall);
+      var mass1 = firstBall.radius;
+      var mass2 = secondBall.radius;
+      var velX1 = firstBall.velocity.x;
+      var velX2 = secondBall.velocity.x;
+      var velY1 = firstBall.velocity.y;
+      var velY2 = secondBall.velocity.y;
+
+      var newVelX1 =
+          (velX1 * (mass1 - mass2) + (2 * mass2 * velX2)) / (mass1 + mass2);
+      var newVelX2 =
+          (velX2 * (mass2 - mass1) + (2 * mass1 * velX1)) / (mass1 + mass2);
+      var newVelY1 =
+          (velY1 * (mass1 - mass2) + (2 * mass2 * velY2)) / (mass1 + mass2);
+      var newVelY2 =
+          (velY2 * (mass2 - mass1) + (2 * mass1 * velY1)) / (mass1 + mass2);
+
+      firstBall.velocity.x = newVelX1;
+      secondBall.velocity.x = newVelX2;
+      firstBall.velocity.y = newVelY1;
+      secondBall.velocity.y = newVelY2;
+
+      firstBall.x = firstBall.x + newVelX1 * dt;
+      firstBall.y = firstBall.y + newVelY1 * dt;
+      secondBall.x = secondBall.x + newVelX2 * dt;
+      secondBall.y = secondBall.y + newVelY2 * dt;
+    }
+  }
+
+  bool _pawnPawnCollision(CircleEntity first, CircleEntity second, double dt) {
     if (identical(first, second)) return false;
 
     if (circleCollision(first, second)) {
+      resolveCircle(first, second);
       double dx = first.x - second.x;
       double dy = first.y - second.y;
 
@@ -131,12 +177,21 @@ class SoccerMode extends Game {
       var nx = -dx / nl;
       var ny = -dy / nl;
       // calcunew velocity: v' = v - 2 * dot(d, v) * n
-      double dot = first.velocity.x * nx + first.velocity.y * ny;
-      first.velocity.x -= 2 * dot * nx;
-      first.velocity.y -= 2 * dot * ny;
+      double dot;
 
-      second.velocity.x += dot * nx;
-      second.velocity.y += dot * ny;
+      if (first.moving) {
+        dot = first.velocity.x * nx + first.velocity.y * ny;
+        first.velocity.x -= dot * nx;
+        first.velocity.y -= dot * ny;
+        second.velocity.x += dot * nx;
+        second.velocity.y += dot * ny;
+      } else {
+        dot = second.velocity.x * nx + second.velocity.y * ny;
+        first.velocity.x += dot * nx;
+        first.velocity.y += dot * ny;
+        second.velocity.x -= dot * nx;
+        second.velocity.y -= dot * ny;
+      }
 
       second.frames = 5;
       second.moving = true;
@@ -150,9 +205,7 @@ class SoccerMode extends Game {
   }
 
   void _pawnFieldCollision(CircleEntity pawn) {
-    if (pawn.x - pawn.radius <= field.topLeft.x &&
-        !(pawn.y - pawn.radius >= size.height * 0.4 &&
-            pawn.y + pawn.radius <= size.height * 0.4 + size.height * 0.4)) {
+    if (pawn.x - pawn.radius <= field.topLeft.x) {
       pawn.x = field.topLeft.x + pawn.radius;
       pawn.velocity.x *= -1;
     }

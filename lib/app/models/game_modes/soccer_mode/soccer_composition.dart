@@ -15,17 +15,15 @@ class SoccerComposition {
     _composition = [];
 
     _composition.add(Vector(_x(_size.width / 16, side), _y(_size.height / 2)));
+
     _composition
         .add(Vector(_x(3.5 * _size.width / 16, side), _y(_size.height / 4)));
 
     _composition.add(
         Vector(_x(3.5 * _size.width / 16, side), _y(3 * _size.height / 4)));
 
-    _composition.add(
-        Vector(_x(6 * _size.width / 16, side), _y(2.5 * _size.height / 4)));
-
-    _composition.add(
-        Vector(_x(6 * _size.width / 16, side), _y(1.5 * _size.height / 4)));
+    _composition
+        .add(Vector(_x(6 * _size.width / 16, side), _y(_size.height / 2)));
 
     return _composition;
   }

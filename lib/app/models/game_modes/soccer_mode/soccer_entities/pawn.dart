@@ -48,12 +48,11 @@ class Pawn extends CircleEntity {
   @override
   bool update(double dt) {
     if (_startPress) return true;
+
     if (!moving) return false;
 
     coordinate.x += dt * velocity.x;
     coordinate.y += dt * velocity.y;
-
-    if (collisionSys != null) collisionSys(this);
 
     if (frames-- == 0) moving = false;
 

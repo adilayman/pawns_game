@@ -9,7 +9,7 @@ class CircularProgressBar {
 
   double _maxValue;
 
-  double currentValue = 7;
+  double currentValue = 0;
 
   Color initialColor = Colors.green;
   Color progressColor = Colors.red;
