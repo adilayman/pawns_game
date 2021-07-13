@@ -11,7 +11,8 @@ abstract class Game with ChangeNotifier {
   bool requestedUpdate = false;
 
   Game() {
-    _gameLoop = GameLoop(update, running: true);
+    _gameLoop = GameLoop(update);
+    _gameLoop.start();
   }
 
   void init(Size size) => this.size = size;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:info2051_2018/core/models/game/game.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
 
 /// GameEntity presentation
@@ -13,9 +12,7 @@ abstract class GameEntity {
 
   int frames = 0;
 
-  Game game;
-
-  GameEntity(this._coordinate, this.game);
+  GameEntity(this._coordinate);
 
   /// render the game entity in the given canvas
   void render(Canvas canvas);

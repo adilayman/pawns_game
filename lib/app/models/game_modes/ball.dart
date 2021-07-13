@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:info2051_2018/core/models/game/game.dart';
 import 'package:info2051_2018/core/models/game_entity/circle_entity.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
 
@@ -7,10 +6,8 @@ import 'dart:ui' as ui;
 
 class Ball extends CircleEntity {
   ui.Image _image;
-  Function collisionSys;
 
-  Ball(Vector point, Game game, {this.collisionSys})
-      : super(point, 20, Colors.red.shade900, game);
+  Ball(Vector point) : super(point, 20, Colors.red.shade900);
 
   @override
   void render(Canvas canvas) {
@@ -41,8 +38,6 @@ class Ball extends CircleEntity {
 
     coordinate.x += dt * velocity.x;
     coordinate.y += dt * velocity.y;
-
-    if (collisionSys != null) collisionSys(this);
 
     if (frames-- == 0) moving = false;
 

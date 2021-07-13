@@ -55,25 +55,35 @@ class SoccerMode extends Game {
     print("loaded");
   }
 
-  @override
-  void init(Size size) {
-    super.init(size);
-    Size scoreBarSize = Size(size.width, size.height * 0.2);
-
-    _scoreBar = ScoreBar(Vector(0, 0), scoreBarSize);
-
+  void _createSoccerField(Size scoreBarSize) {
     field = SoccerField(
       Vector(size.width * 0.075, size.height * 0.2),
       Size(size.width - 2 * size.width * 0.075,
           size.height - scoreBarSize.height),
     );
+  }
 
-    _ball = Ball(
-        Vector(size.width * 0.075 + (size.width - 2 * size.width * 0.075) / 2,
-            size.height * 0.2 + (size.height - scoreBarSize.height) / 2),
-        this,
-        collisionSys: collisionSystem);
-    //addEntity(_ball);
+  void _createScoreBar(Size scoreBarSize) {
+    _scoreBar = ScoreBar(Vector.zero, scoreBarSize);
+  }
+
+  void _createSoccerBall(Size scoreBarSize) {
+    _ball = Ball(Vector(
+        size.width * 0.075 + (size.width - 2 * size.width * 0.075) / 2,
+        size.height * 0.2 + (size.height - scoreBarSize.height) / 2));
+    addEntity(_ball);
+  }
+
+  @override
+  void init(Size size) {
+    super.init(size);
+    Size scoreBarSize = Size(size.width, size.height * 0.2);
+
+    _createScoreBar(scoreBarSize);
+
+    _createSoccerField(scoreBarSize);
+
+    _createSoccerBall(scoreBarSize);
 
     _composition = SoccerComposition(
       Vector(size.width * 0.075, size.height * 0.2),
@@ -81,13 +91,11 @@ class SoccerMode extends Game {
           size.height - scoreBarSize.height),
     );
 
-    _firstTeam = SoccerTeam(this, "lib/app/images/pawns/red_pawn.png",
-        _composition.defaultComposition(TeamSide.LeftSide),
-        collisionSys: collisionSystem);
+    _firstTeam = SoccerTeam("lib/app/images/pawns/red_pawn.png",
+        _composition.defaultComposition(TeamSide.LeftSide));
 
-    _secondTeam = SoccerTeam(this, "lib/app/images/pawns/blue_pawn.png",
-        _composition.defaultComposition(TeamSide.RightSide),
-        collisionSys: collisionSystem);
+    _secondTeam = SoccerTeam("lib/app/images/pawns/blue_pawn.png",
+        _composition.defaultComposition(TeamSide.RightSide));
 
     addEntity(_firstTeam);
     addEntity(_secondTeam);
@@ -106,8 +114,11 @@ class SoccerMode extends Game {
       for (int j = i + 1; j < pawns.length; j++) {
         _pawnPawnCollision(pawns[i], pawns[j], dt);
       }
+      _pawnPawnCollision(pawns[i], _ball, dt);
       _pawnFieldCollision(pawns[i]);
     }
+
+    _ballFieldCollision(_ball);
 
     if (_ball.x - _ball.radius / 2 <= field.topLeft.x &&
         (_ball.y - _ball.radius >= size.height * 0.4 &&
@@ -116,52 +127,6 @@ class SoccerMode extends Game {
     }
 
     _scoreBar.firstAvatar.currentValue += dt;
-  }
-
-  void collisionSystem(CircleEntity first) {
-    // _firstTeam.pawns.forEach((second) {
-    //   _pawnPawnCollision(first, second);
-    // });
-
-    // _secondTeam.pawns.forEach((second) {
-    //   _pawnPawnCollision(first, second);
-    // });
-
-    // _pawnPawnCollision(first, _ball);
-    // _pawnFieldCollision(first);
-  }
-
-  void calculateNewVelocities(Pawn firstBall, Pawn secondBall, double dt) {
-    if (identical(firstBall, secondBall)) return;
-
-    if (circleCollision(firstBall, secondBall)) {
-      resolveCircle(firstBall, secondBall);
-      var mass1 = firstBall.radius;
-      var mass2 = secondBall.radius;
-      var velX1 = firstBall.velocity.x;
-      var velX2 = secondBall.velocity.x;
-      var velY1 = firstBall.velocity.y;
-      var velY2 = secondBall.velocity.y;
-
-      var newVelX1 =
-          (velX1 * (mass1 - mass2) + (2 * mass2 * velX2)) / (mass1 + mass2);
-      var newVelX2 =
-          (velX2 * (mass2 - mass1) + (2 * mass1 * velX1)) / (mass1 + mass2);
-      var newVelY1 =
-          (velY1 * (mass1 - mass2) + (2 * mass2 * velY2)) / (mass1 + mass2);
-      var newVelY2 =
-          (velY2 * (mass2 - mass1) + (2 * mass1 * velY1)) / (mass1 + mass2);
-
-      firstBall.velocity.x = newVelX1;
-      secondBall.velocity.x = newVelX2;
-      firstBall.velocity.y = newVelY1;
-      secondBall.velocity.y = newVelY2;
-
-      firstBall.x = firstBall.x + newVelX1 * dt;
-      firstBall.y = firstBall.y + newVelY1 * dt;
-      secondBall.x = secondBall.x + newVelX2 * dt;
-      secondBall.y = secondBall.y + newVelY2 * dt;
-    }
   }
 
   bool _pawnPawnCollision(CircleEntity first, CircleEntity second, double dt) {
@@ -204,31 +169,52 @@ class SoccerMode extends Game {
     return false;
   }
 
-  void _pawnFieldCollision(CircleEntity pawn) {
-    if (pawn.x - pawn.radius <= field.topLeft.x) {
-      pawn.x = field.topLeft.x + pawn.radius;
-      pawn.velocity.x *= -1;
+  void _fieldCollisionTB(CircleEntity circle) {
+    if (circle.y - circle.radius <= field.topLeft.y) {
+      circle.y = field.topLeft.y + circle.radius;
+      circle.velocity.y *= -1;
     }
 
-    if (pawn.x + pawn.radius >= field.topRight.x) {
-      pawn.x = field.topRight.x - pawn.radius;
-      pawn.velocity.x *= -1;
+    if (circle.y + circle.radius >= field.bottomRight.y) {
+      circle.y = field.bottomRight.y - circle.radius;
+      circle.velocity.y *= -1;
+    }
+  }
+
+  void _pawnFieldCollisionLR(Pawn circle) {
+    if (circle.x - circle.radius <= field.topLeft.x) {
+      circle.x = field.topLeft.x + circle.radius;
+      circle.velocity.x *= -1;
     }
 
-    if (pawn.y - pawn.radius <= field.topLeft.y) {
-      pawn.y = field.topLeft.y + pawn.radius;
-      pawn.velocity.y *= -1;
+    if (circle.x + circle.radius >= field.topRight.x) {
+      circle.x = field.topRight.x - circle.radius;
+      circle.velocity.x *= -1;
+    }
+  }
+
+  void _ballFieldCollisionLR(Ball ball) {
+    if (ball.x - ball.radius <= field.topLeft.x &&
+        !(ball.y - ball.radius >= size.height * 0.4 &&
+            ball.y <= size.height * 0.4 + size.height * 0.4)) {
+      ball.x = field.topLeft.x + ball.radius;
+      ball.velocity.x *= -1;
     }
 
-    if (pawn.y + pawn.radius >= field.bottomRight.y) {
-      pawn.y = field.bottomRight.y - pawn.radius;
-      pawn.velocity.y *= -1;
+    if (ball.x + ball.radius >= field.topRight.x) {
+      ball.x = field.topRight.x - ball.radius;
+      ball.velocity.x *= -1;
     }
+  }
 
-    if (pawn.x - pawn.radius <= 0) {
-      pawn.x = pawn.radius;
-      pawn.velocity.x *= -1;
-    }
+  void _pawnFieldCollision(Pawn pawn) {
+    _pawnFieldCollisionLR(pawn);
+    _fieldCollisionTB(pawn);
+  }
+
+  void _ballFieldCollision(Ball ball) {
+    _ballFieldCollisionLR(ball);
+    _fieldCollisionTB(ball);
   }
 
   @override

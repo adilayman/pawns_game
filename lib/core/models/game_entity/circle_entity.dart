@@ -8,8 +8,7 @@ abstract class CircleEntity extends GameEntity {
   double radius;
   Color _color;
 
-  CircleEntity(Vector point, this.radius, this._color, game)
-      : super(point, game);
+  CircleEntity(Vector point, this.radius, this._color) : super(point);
 
   @override
   void render(Canvas canvas) {

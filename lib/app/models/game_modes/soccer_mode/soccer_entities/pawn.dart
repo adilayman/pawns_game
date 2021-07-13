@@ -2,8 +2,6 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import 'package:info2051_2018/app/models/game_modes/soccer_mode/soccer_mode.dart';
-import 'package:info2051_2018/core/models/game/game.dart';
 import 'package:info2051_2018/app/models/arrow.dart';
 import 'package:info2051_2018/core/models/game_entity/circle_entity.dart';
 import 'package:info2051_2018/core/utils/vector.dart';
@@ -20,11 +18,8 @@ class Pawn extends CircleEntity {
 
   ui.Image _image;
 
-  Function collisionSys;
-
-  Pawn(Vector point, Game game, {this.collisionSys})
-      : super(point, 30, Colors.red.shade900, game) {
-    _arrow = Arrow(point, Colors.white54, game);
+  Pawn(Vector point) : super(point, 25, Colors.red.shade900) {
+    _arrow = Arrow(point, Colors.white54);
   }
 
   void loadImage(ui.Image image) => _image = image;

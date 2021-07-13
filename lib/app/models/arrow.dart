@@ -11,7 +11,7 @@ class Arrow extends GameEntity {
   Vector endPoint;
   double angle = 0;
 
-  Arrow(Vector point, this._color, game) : super(point, game) {
+  Arrow(Vector point, this._color) : super(point) {
     endPoint = Vector(point.x, point.y);
   }
 
