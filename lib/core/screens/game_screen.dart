@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:info2051_2018/core/models/game/game.dart';
+
 import 'package:provider/provider.dart';
 
-// ignore: must_be_immutable
-abstract class GameView extends StatelessWidget {
-  Game game;
+import 'package:pawns_game/core/providers/game.dart';
 
-  GameView({@required this.game, @required Color backgroundColor});
+// ignore: must_be_immutable
+abstract class GameScreen extends StatelessWidget {
+  Game game;
+  List<Widget> _children = [];
+
+  GameScreen({@required this.game});
+
+  /// Adds a new child to the game tree.
+  void addChild(Widget child) => _children.add(child);
 
   @override
   Widget build(BuildContext context) {
-    game.init(MediaQuery.of(context).size); // init fields given screen size
-
+    game.init(context);
     return ChangeNotifierProvider(
       create: (context) => game,
       child: Consumer<Game>(
         builder: (context, game, _) {
-          return GestureDetector(
-            onLongPressMoveUpdate: (details) =>
-                game.onLongPressMoveUpdate(details.globalPosition),
-            onLongPressStart: (details) =>
-                game.onLongPressStart(details.globalPosition),
-            onLongPressEnd: (details) =>
-                game.onLongPressEnd(details.globalPosition),
-            child: CustomPaint(
-              painter: _GamePainter(game.render),
+          return Scaffold(
+            body: GestureDetector(
+              onLongPressMoveUpdate: (details) =>
+                  game.onLongPressMoveUpdate(details.globalPosition),
+              onLongPressStart: (details) =>
+                  game.onLongPressStart(details.globalPosition),
+              onLongPressEnd: (details) =>
+                  game.onLongPressEnd(details.globalPosition),
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: game.size,
+                    painter: _GamePainter(game.render),
+                  ),
+                  ..._children,
+                ],
+              ),
             ),
           );
         },
@@ -35,7 +47,7 @@ abstract class GameView extends StatelessWidget {
 }
 
 class _GamePainter extends CustomPainter {
-  Function _render;
+  Function(Canvas canvas, Size size) _render;
 
   _GamePainter(this._render);
 
