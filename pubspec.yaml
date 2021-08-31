@@ -1,5 +1,5 @@
 name: pawns_game
-description: A new Flutter project.
+description: A 2D Flutter sports game.
 
 version: 1.0.0+1
 
@@ -20,7 +20,7 @@ dev_dependencies:
 
 flutter_icons:
   image_path: "assets/png/app_logo.png"
-  android: true 
+  android: true
   ios: true
 
 flutter:

@@ -24,16 +24,29 @@ Not available in this version.
 
 ### Prestart screen
 
-![](assets/screenshots/prestart_screen_1.png)
-![](assets/screenshots/prestart_screen_2.png)
+<div style="text-align:center">
+  <img src="assets/screenshots/prestart_screen_1.png" style="width: 70vw;">
+</div>
+
+<div style="text-align:center">
+  <img src="assets/screenshots/prestart_screen_2.png" style="width: 70vw;">
+</div>
 
 ### Home screen
 
-![](assets/screenshots/home_screen.png)
+<div style="text-align:center">
+  <img src="assets/screenshots/home_screen.png" style="width: 70vw;">
+</div>
 
 ### Football mode screen
 
-![](assets/screenshots/football_mode_screen.png)
+<div style="text-align:center">
+  <img src="assets/screenshots/football_mode_screen.png" style="width: 70vw;">
+</div>
+
+## Want to test the game?
+
+You can install `pawns-game.apk` on your device.
 
 ## Credits
 
@@ -50,3 +63,7 @@ Not available in this version.
 - Trophy image: https://kenney.nl/assets/game-icons
 
 Thanks to them!
+
+---
+
+_This project is a project of the INFO2051 course of the University of Liege._
