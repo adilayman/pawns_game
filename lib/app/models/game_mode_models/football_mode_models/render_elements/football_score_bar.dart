@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:pawns_game/app/providers/application_providers/application.dart';
 import 'package:pawns_game/app/providers/game_mode_providers/football_mode_provider.dart';
 import 'package:pawns_game/app/models/game_mode_models/football_mode_models/game_entities/football_team.dart';
-import 'package:pawns_game/app/models/game_mode_models/game_entities/circular_progress_bar.dart';
+import 'package:pawns_game/core/models/game_entities/circular_progress_bar.dart';
 import 'package:pawns_game/app/models/game_mode_models/render_elements/text_area.dart';
 
 import 'package:pawns_game/core/models/render_elements/render_element.dart';

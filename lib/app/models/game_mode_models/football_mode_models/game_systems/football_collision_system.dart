@@ -1,7 +1,7 @@
 import 'package:pawns_game/app/providers/game_mode_providers/football_mode_provider.dart';
 import 'package:pawns_game/app/models/game_mode_models/football_mode_models/game_entities/football.dart';
 import 'package:pawns_game/app/models/game_mode_models/football_mode_models/game_entities/football_pawn.dart';
-import 'package:pawns_game/app/models/game_mode_models/game_entities/circular_sprite.dart';
+import 'package:pawns_game/core/models/game_entities/circular_sprite.dart';
 
 import 'package:pawns_game/core/models/game_systems/game_system.dart';
 import 'package:pawns_game/core/resources/vector.dart';

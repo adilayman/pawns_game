@@ -1,6 +1,10 @@
-# Pawns Game
+<p align="center">
+<img src="assets/png/app_logo.png" height="100" alt="Bloc" />
+</p>
 
 _By Ayman Adil (Last source code update: 07/08/2021)_
+
+---
 
 ## Description
 

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:pawns_game/app/models/game_mode_models/game_entities/circular_sprite.dart';
+import 'package:pawns_game/core/models/game_entities/circular_sprite.dart';
 
 import 'package:pawns_game/core/resources/sprite.dart';
 import 'package:pawns_game/core/resources/vector.dart';
