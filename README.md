@@ -28,23 +28,23 @@ Not available in this version.
 ### Prestart screen
 
 <p align="center">
-  <img src="assets/screenshots/prestart_screen_1.png" style="width: 70vw;">
+  <img src="assets/screenshots/prestart_screen_1.png" width="575">
 </p>
 
 <p align="center">
-  <img src="assets/screenshots/prestart_screen_2.png" style="width: 70vw;">
+  <img src="assets/screenshots/prestart_screen_2.png" width="575">
 </p>
 
 ### Home screen
 
 <p align="center">
-  <img src="assets/screenshots/home_screen.png" style="width: 70vw;">
+  <img src="assets/screenshots/home_screen.png" width="575">
 </p>
 
 ### Football mode screen
 
 <p align="center">
-  <img src="assets/screenshots/football_mode_screen.png" style="width: 70vw;">
+  <img src="assets/screenshots/football_mode_screen.png" width="575">
 </p>
 
 ## Want to test the game?
