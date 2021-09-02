@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:pawns_game/core/models/game_entities/circular_sprite.dart';
-
-import 'package:pawns_game/core/resources/sprite.dart';
-import 'package:pawns_game/core/resources/vector.dart';
+import '../../resources/sprite.dart';
+import '../../resources/vector.dart';
+import '../game_entities/circular_sprite.dart';
 
 class CircularProgressBar extends CircularSprite {
   double _max;

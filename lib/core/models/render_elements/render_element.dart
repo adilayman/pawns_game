@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:pawns_game/core/resources/sprite.dart';
-import 'package:pawns_game/core/resources/vector.dart';
+import '../../resources/sprite.dart';
+import '../../resources/vector.dart';
 
 /// Abstract representation of a render element.
 abstract class RenderElement {

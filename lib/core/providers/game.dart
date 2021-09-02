@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:pawns_game/core/models/game/game_loop.dart';
-import 'package:pawns_game/core/models/game_entities/game_entity.dart';
-import 'package:pawns_game/core/models/game/game_gesture.dart';
+import '../models/game/game_loop.dart';
+import '../models/game/game_gesture.dart';
+import '../models/game_entities/game_entity.dart';
 
 /// Abstract representation of a game.
 abstract class Game extends ChangeNotifier implements GameGesture {
@@ -45,7 +45,7 @@ abstract class Game extends ChangeNotifier implements GameGesture {
   void addEntity(GameEntity entity) => _entities.add(entity);
 
   /// Resets the game state.
-  void reset();
+  void reset() {}
 
   void onLongPressMoveUpdate(Offset position) {
     for (GameEntity entity in entities) entity.onLongPressMoveUpdate(position);

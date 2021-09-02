@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:pawns_game/core/models/game_entities/game_entity.dart';
-import 'package:pawns_game/core/resources/vector.dart';
+import '../../resources/vector.dart';
+import '../game_entities/game_entity.dart';
 
 /// Circular sprite presentation.
 abstract class CircularSprite extends GameEntity {

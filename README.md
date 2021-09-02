@@ -1,10 +1,11 @@
-<p align="center">
+<center>
 <img src="assets/png/app_logo.png" height="100" alt="Bloc" />
-</p>
+</br>
+<h1> PAWNS GAME </h1>
+</center>
 
 _By Ayman Adil (Last source code update: 07/08/2021)_
 
----
 
 ## Description
 
@@ -28,25 +29,25 @@ Not available in this version.
 
 ### Prestart screen
 
-<div style="text-align:center">
+<p align="center">
   <img src="assets/screenshots/prestart_screen_1.png" style="width: 70vw;">
-</div>
+</p>
 
-<div style="text-align:center">
+<p align="center">
   <img src="assets/screenshots/prestart_screen_2.png" style="width: 70vw;">
-</div>
+</p>
 
 ### Home screen
 
-<div style="text-align:center">
+<p align="center">
   <img src="assets/screenshots/home_screen.png" style="width: 70vw;">
-</div>
+</p>
 
 ### Football mode screen
 
-<div style="text-align:center">
+<p align="center">
   <img src="assets/screenshots/football_mode_screen.png" style="width: 70vw;">
-</div>
+</p>
 
 ## Want to test the game?
 
@@ -68,6 +69,3 @@ You can install `pawns_game.apk` on your device.
 
 Thanks to them!
 
----
-
-_This project is a project of the INFO2051 course of the University of Liege._

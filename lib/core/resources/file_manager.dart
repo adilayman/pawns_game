@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 
 /// Synchronous file Manager.
 class FileManager {
