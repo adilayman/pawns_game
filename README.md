@@ -1,11 +1,9 @@
-<center>
-<img src="assets/png/app_logo.png" height="100" alt="Bloc" />
-</br>
-<h1> PAWNS GAME </h1>
-</center>
+<p align="center" style="margin-bottom: 0px !important;">
+  <img src="assets/png/app_logo.png" width="125" alt="Pawns Game logo" align="center">
+</p>
+<h1 align="center" style="margin-top: 0px;">Pawns Game</h1>
 
 _By Ayman Adil (Last source code update: 07/08/2021)_
-
 
 ## Description
 
@@ -68,4 +66,3 @@ You can install `pawns_game.apk` on your device.
 - Trophy image: https://kenney.nl/assets/game-icons
 
 Thanks to them!
-
