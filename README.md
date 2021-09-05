@@ -49,7 +49,7 @@ Not available in this version.
 
 ## Want to test the game?
 
-You can install `pawns_game.apk` on your device.
+You can install [pawns_game.apk](pawns_game.apk) on your device.
 
 ## Credits
 
