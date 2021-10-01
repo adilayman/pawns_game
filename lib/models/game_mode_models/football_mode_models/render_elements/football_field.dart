@@ -5,7 +5,6 @@ import 'package:pawns_game/providers/game_mode_providers/football_mode_provider.
 
 import 'package:provider/provider.dart';
 
-
 class FootballField extends RenderElement {
   FootballModeProvider _game;
 

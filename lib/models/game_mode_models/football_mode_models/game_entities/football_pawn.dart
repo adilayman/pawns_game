@@ -13,7 +13,7 @@ class FootballPawn extends CircularSprite {
   bool _canMove = false;
 
   FootballPawn(Vector position, Sprite sprite) : super(position, 23) {
-    _arrow = Arrow(position);
+    _arrow = Arrow();
     super.sprite = sprite;
   }
 
@@ -26,14 +26,11 @@ class FootballPawn extends CircularSprite {
 
   @override
   void update(double dt) {
-    if (_startPress) return;
+    var friction = 0.05;
+    velocity += -velocity * friction;
 
-    if (currentSpeed <= 0) velocity = Vector(0, 0);
-
-    position.x += dt * velocity.x;
-    position.y += dt * velocity.y;
-
-    currentSpeed -= dt * speed;
+    position += velocity * dt;
+    _arrow.position = position;
   }
 
   @override
@@ -54,8 +51,7 @@ class FootballPawn extends CircularSprite {
 
     double angle = pi - atan2(position.dy - y, position.dx - x);
 
-    speed = 230;
-
+    var speed = 1000;
     velocity.x = speed * cos(angle);
     velocity.y = -speed * sin(angle);
 
@@ -66,7 +62,6 @@ class FootballPawn extends CircularSprite {
   void reset() {
     _arrow.position = position;
     velocity = Vector(0, 0);
-    currentSpeed = 0;
   }
 
   bool get startPress => _startPress;
