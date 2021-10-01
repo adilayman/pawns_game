@@ -2,6 +2,7 @@ name: pawns_game
 description: A 2D Flutter sports game.
 
 version: 1.0.0+1
+publish_to: none
 
 environment:
   sdk: ">=2.2.2 <3.0.0"
@@ -9,11 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gamez: ^0.0.1
-  cupertino_icons: ^0.1.2
-  provider: ^5.0.0
-  path_provider: ^2.0.2
-  flutter_launcher_icons: ^0.7.5
+
+  gamez:
+    path: gamez/
+
+  provider: ^6.0.0
+  path_provider: ^2.0.4
+  flutter_launcher_icons: ^0.9.2
 
 dev_dependencies:
   flutter_test:

@@ -1,0 +1,3 @@
+[submodule "gamez"]
+	path = gamez
+	url = https://github.com/adilayman/gamez
