@@ -6,7 +6,7 @@ import 'package:pawns_game/widgets/standard_widgets/standard_buttons/app_icon_bu
 import 'package:gamez/gamez.dart';
 
 // ignore: must_be_immutable
-class FootballModeScreen extends GameScreen {
+class FootballModeScreen extends GameWidget {
   FootballModeScreen() : super(game: FootballModeProvider()) {
     _createQuitButton();
   }

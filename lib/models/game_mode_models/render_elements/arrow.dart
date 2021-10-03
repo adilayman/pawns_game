@@ -5,14 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:gamez/gamez.dart';
 
 class Arrow extends RenderElement {
-  Vector _endPoint;
   double angle = 0;
 
   double _barAngle = 0.78;
 
-  Arrow(Vector position) : super(position, Size(3, 70)) {
-    _endPoint = Vector(position.x, position.y);
-  }
+  Arrow() : super(Vector(0, 0), Size(3, 70));
 
   @override
   void render(Canvas canvas) {
@@ -20,6 +17,7 @@ class Arrow extends RenderElement {
       ..color = Color.fromRGBO(255, 255, 255, 0.8)
       ..strokeWidth = size.width;
 
+    var _endPoint = Vector(0, 0);
     _endPoint.x = x + size.height * cos(angle);
     _endPoint.y = y - size.height * sin(angle);
 

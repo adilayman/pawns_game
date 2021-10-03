@@ -46,9 +46,6 @@ class FootballCollisionSystem implements GameSystem {
 
     if (speed < 0) return;
 
-    first.speed = speed;
-    second.speed = speed;
-
     first.velocity.x -= speed * collisionNorm.x;
     first.velocity.y -= speed * collisionNorm.y;
 
