@@ -4,10 +4,10 @@ import 'package:gamez/gamez.dart';
 import 'package:pawns_game/providers/application_providers/application.dart';
 
 class AvatarSelectionProvider extends ChangeNotifier {
-  Sprite _selectedAvatar;
+  ImageRenderer? _selectedAvatar;
   Application _app;
 
-  List<Sprite> _avatars;
+  late List<ImageRenderer?> _avatars;
   int _numberAvatars = 18;
 
   AvatarSelectionProvider(this._app) {
@@ -25,14 +25,14 @@ class AvatarSelectionProvider extends ChangeNotifier {
   }
 
   /// Checks if the [avatar] is selected.
-  bool isSelected(Sprite avatar) => identical(avatar, _selectedAvatar);
+  bool isSelected(ImageRenderer avatar) => identical(avatar, _selectedAvatar);
 
-  set selectedAvatar(Sprite value) {
+  set selectedAvatar(ImageRenderer? value) {
     _selectedAvatar = value;
     notifyListeners();
   }
 
-  Sprite get selectedAvatar => _selectedAvatar;
+  ImageRenderer? get selectedAvatar => _selectedAvatar;
 
-  List<Sprite> get avatars => _avatars;
+  List<ImageRenderer?> get avatars => _avatars;
 }

@@ -5,15 +5,15 @@ class AppButton extends StatelessWidget {
   final double height;
   final double fontsize;
   final String text;
-  final Function onPressed;
+  final void Function() onPressed;
   final Color color = Color.fromRGBO(0, 5, 25, 0.3);
 
   AppButton({
     this.width = 165,
     this.height = 65,
     this.fontsize = 16,
-    @required this.text,
-    @required this.onPressed,
+    required this.text,
+    required this.onPressed,
   });
 
   @override

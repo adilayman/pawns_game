@@ -25,8 +25,8 @@ class FootballGoalSystem implements GameSystem {
 
   /// Check max score for both teams.
   void _checkMaxScore() {
-    _checkTeamMaxScore(_game.firstTeam);
-    _checkTeamMaxScore(_game.secondTeam);
+    _checkTeamMaxScore(_game.firstTeam!);
+    _checkTeamMaxScore(_game.secondTeam!);
   }
 
   /// The the max score given [team].
@@ -34,7 +34,7 @@ class FootballGoalSystem implements GameSystem {
     if (team.score < _maxScore) return;
 
     // increase wins and update the save file.
-    team.player.wins++;
+    team.player!.wins++;
     Provider.of<Application>(_game.context, listen: false).updateSaveFile();
 
     // the game is over and the winner is defined.
@@ -50,10 +50,10 @@ class FootballGoalSystem implements GameSystem {
 
   /// Checks goal for both teams.
   void _checkGoal() {
-    if (_checkTeamGoal(_game.firstTeam, _isRightGoal()))
-      _game.secondTeam.turn = true;
-    else if (_checkTeamGoal(_game.secondTeam, _isLeftGoal()))
-      _game.firstTeam.turn = true;
+    if (_checkTeamGoal(_game.firstTeam!, _isRightGoal()))
+      _game.secondTeam!.turn = true;
+    else if (_checkTeamGoal(_game.secondTeam!, _isLeftGoal()))
+      _game.firstTeam!.turn = true;
 
     if (_goal) _game.gameLoop.wait(3, afterWait: () => _goal = false);
   }

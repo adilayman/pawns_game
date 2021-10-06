@@ -10,7 +10,7 @@ import 'package:pawns_game/widgets/player_prestart_widgets/player_prestart_home_
 class PlayerPrestartWidget extends StatelessWidget {
   final String label;
 
-  PlayerPrestartWidget({@required this.label});
+  PlayerPrestartWidget({required this.label});
 
   /// Creates a current prestart Widget.
   Widget _createCurrentPrestartWidget(PlayerPrestartProvider model) {

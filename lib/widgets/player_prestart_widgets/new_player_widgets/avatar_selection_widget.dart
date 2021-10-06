@@ -8,14 +8,14 @@ import 'package:gamez/gamez.dart';
 
 class AvatarSelectionWidget extends StatelessWidget {
   /// Returns a check box widget for the selected avatar.
-  Widget _checkBoxWidget(AvatarSelectionProvider model, Sprite avatar) {
+  Widget _checkBoxWidget(AvatarSelectionProvider model, ImageRenderer avatar) {
     return model.isSelected(avatar)
         ? Icon(Icons.check_circle_rounded, color: Colors.green.shade800)
         : Container();
   }
 
   /// Returns a button avatar widget.
-  Widget _avatarWidget(AvatarSelectionProvider model, Sprite avatar) {
+  Widget _avatarWidget(AvatarSelectionProvider model, ImageRenderer avatar) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.all(0.0),
@@ -37,7 +37,7 @@ class AvatarSelectionWidget extends StatelessWidget {
       widgets.add(Stack(
         alignment: Alignment.topRight,
         children: [
-          _avatarWidget(model, avatar),
+          _avatarWidget(model, avatar!),
           _checkBoxWidget(model, avatar),
         ],
       ));

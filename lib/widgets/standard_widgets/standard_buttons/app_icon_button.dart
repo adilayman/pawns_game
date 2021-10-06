@@ -7,10 +7,10 @@ class AppIconButton extends StatelessWidget {
   final Color secondaryColor;
 
   AppIconButton({
-    @required this.onPressed,
-    @required this.icon,
-    @required this.primaryColor,
-    @required this.secondaryColor,
+    required this.onPressed,
+    required this.icon,
+    required this.primaryColor,
+    required this.secondaryColor,
   });
 
   @override

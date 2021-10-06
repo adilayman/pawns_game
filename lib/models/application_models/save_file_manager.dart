@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:gamez/gamez.dart';
 import 'package:pawns_game/models/application_models/player.dart';
+import 'package:pawns_game/resources/file_manager.dart';
 
 class SaveFileManager {
-  FileManager _fileManager;
+  late FileManager _fileManager;
   String _filename;
 
   Map<String, Player> _players = Map<String, Player>();

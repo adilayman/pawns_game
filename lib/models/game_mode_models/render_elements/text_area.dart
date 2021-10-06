@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:gamez/gamez.dart';
 
-class TextArea extends RenderElement {
+class TextArea extends GameEntity {
   String text;
   double fontSize;
 
   TextArea(Vector position, this.text, {this.fontSize = 58})
-      : super(position, null);
+      : super(position, Size.zero);
 
   @override
   void render(Canvas canvas) {
@@ -35,4 +35,10 @@ class TextArea extends RenderElement {
 
   @override
   bool contains(Offset position) => false;
+
+  @override
+  void reset() {}
+
+  @override
+  void update(double dt) {}
 }

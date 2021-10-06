@@ -6,16 +6,14 @@ import 'package:pawns_game/models/game_mode_models/render_elements/arrow.dart';
 
 import 'package:gamez/gamez.dart';
 
-class FootballPawn extends CircularSprite {
-  Arrow _arrow;
+class FootballPawn extends CircularEntity implements LongPressDetector {
+  Arrow _arrow = Arrow();
 
   bool _startPress = false;
   bool _canMove = false;
 
-  FootballPawn(Vector position, Sprite sprite) : super(position, 23) {
-    _arrow = Arrow();
-    super.sprite = sprite;
-  }
+  FootballPawn(Vector position, ImageRenderer? image)
+      : super(position, 23, image: image);
 
   @override
   void render(Canvas canvas) {

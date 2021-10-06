@@ -7,8 +7,8 @@ class PrestartHomeWidget extends StatelessWidget {
   final Function onPressedNew;
 
   PrestartHomeWidget({
-    @required this.onPressedExisting,
-    @required this.onPressedNew,
+    required this.onPressedExisting,
+    required this.onPressedNew,
   });
 
   @override

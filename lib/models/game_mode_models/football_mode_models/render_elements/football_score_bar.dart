@@ -9,27 +9,27 @@ import 'package:pawns_game/models/game_mode_models/render_elements/text_area.dar
 
 import 'package:gamez/gamez.dart';
 
-class FootballScoreBar extends RenderElement {
+class FootballScoreBar extends GameEntity {
   FootballModeProvider _game;
 
-  CircularProgressBar _firstProgressBar;
-  CircularProgressBar _secondProgressBar;
+  late CircularProgressBar _firstProgressBar;
+  late CircularProgressBar _secondProgressBar;
 
   /// max time for plating.
   double _maxTime = 30;
 
   FootballScoreBar(Size size, this._game) : super(Vector(0, 0), size) {
     _firstProgressBar = _createProgressBar(
-        Vector(size.width * 0.25, size.height / 2), _game.firstTeam);
+        Vector(size.width * 0.25, size.height / 2), _game.firstTeam!);
     _secondProgressBar = _createProgressBar(
-        Vector(size.width * 0.75, size.height / 2), _game.secondTeam);
+        Vector(size.width * 0.75, size.height / 2), _game.secondTeam!);
   }
 
   /// Creates a circular progress bar given a [team].
   CircularProgressBar _createProgressBar(Vector position, FootballTeam team) {
     Application app = Provider.of<Application>(_game.context, listen: false);
     return CircularProgressBar(position, size.height * 0.4, _maxTime,
-        sprite: app.sprites[team.player.avatar]);
+        image: app.sprites[team.player!.avatar]);
   }
 
   /// Renders score bar background.
@@ -70,15 +70,15 @@ class FootballScoreBar extends RenderElement {
 
   /// Renders goal text.
   void _renderGoalText(Canvas canvas) {
-    TextArea(Vector(size.width / 2, size.height / 2), "GOAL!!!", fontSize: 38)
+    TextArea(Vector(size.width / 2, size.height / 2), "GOAL!!", fontSize: 38)
         .render(canvas);
   }
 
   /// Renders winner name.
   void _renderWinnerName(Canvas canvas) {
-    String winnerName = _game.firstTeam.winner
-        ? _game.firstTeam.player.name
-        : _game.secondTeam.player.name;
+    String winnerName = _game.firstTeam!.winner
+        ? _game.firstTeam!.player!.name
+        : _game.secondTeam!.player!.name;
 
     TextArea(
       Vector(size.width / 2, size.height / 2),
@@ -95,10 +95,10 @@ class FootballScoreBar extends RenderElement {
 
   /// Renders players' avatars.
   void _renderAvatars(Canvas canvas) {
-    if (_game.firstTeam.winner || !_game.gameOver)
+    if (_game.firstTeam!.winner || !_game.gameOver)
       _firstProgressBar.render(canvas);
 
-    if (_game.secondTeam.winner || !_game.gameOver)
+    if (_game.secondTeam!.winner || !_game.gameOver)
       _secondProgressBar.render(canvas);
   }
 
@@ -108,9 +108,9 @@ class FootballScoreBar extends RenderElement {
     if (_game.gameOver || _game.goalSystem.goal) return;
 
     _renderScore(
-        canvas, Offset(size.width * 0.35, size.height / 2), _game.firstTeam);
+        canvas, Offset(size.width * 0.35, size.height / 2), _game.firstTeam!);
     _renderScore(
-        canvas, Offset(size.width * 0.65, size.height / 2), _game.secondTeam);
+        canvas, Offset(size.width * 0.65, size.height / 2), _game.secondTeam!);
   }
 
   @override
@@ -125,7 +125,7 @@ class FootballScoreBar extends RenderElement {
 
   @override
   void update(double dt) {
-    _game.firstTeam.turn
+    _game.firstTeam!.turn
         ? _firstProgressBar.current += dt
         : _secondProgressBar.current += dt;
 

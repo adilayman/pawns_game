@@ -5,11 +5,11 @@ import 'package:pawns_game/providers/game_mode_providers/football_mode_provider.
 
 import 'package:provider/provider.dart';
 
-class FootballField extends RenderElement {
+class FootballField extends GameEntity {
   FootballModeProvider _game;
 
-  Sprite _leftGoalSprite;
-  Sprite _rightGoalSprite;
+  ImageRenderer? _leftGoalSprite;
+  ImageRenderer? _rightGoalSprite;
 
   FootballField(Vector position, Size size, this._game)
       : super(position, size) {
@@ -45,8 +45,8 @@ class FootballField extends RenderElement {
 
   /// Renders goals.
   void renderGoals(Canvas canvas) {
-    _leftGoalSprite.render(canvas, Offset(0, goalSize.height), goalSize);
-    _rightGoalSprite.render(canvas,
+    _leftGoalSprite!.render(canvas, Offset(0, goalSize.height), goalSize);
+    _rightGoalSprite!.render(canvas,
         Offset(_game.size.width - goalSize.width, goalSize.height), goalSize);
   }
 
@@ -78,4 +78,10 @@ class FootballField extends RenderElement {
   Vector get center => Vector(x + size.width / 2, y + size.height / 2);
 
   Size get goalSize => Size(_game.size.width * 0.075, _game.size.height * 0.4);
+
+  @override
+  void reset() {}
+
+  @override
+  void update(double dt) {}
 }

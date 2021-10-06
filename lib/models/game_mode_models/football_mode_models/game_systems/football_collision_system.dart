@@ -13,8 +13,8 @@ class FootballCollisionSystem implements GameSystem {
   @override
   void perform() {
     List<FootballPawn> pawns = [];
-    pawns.addAll(_game.firstTeam.pawns);
-    pawns.addAll(_game.secondTeam.pawns);
+    pawns.addAll(_game.firstTeam!.pawns);
+    pawns.addAll(_game.secondTeam!.pawns);
 
     for (int i = 0; i < pawns.length; i++) {
       for (int j = i + 1; j < pawns.length; j++)
@@ -31,7 +31,7 @@ class FootballCollisionSystem implements GameSystem {
   }
 
   /// Performs circle-circle bouncing.
-  void _circleCircleBounce(CircularSprite first, CircularSprite second) {
+  void _circleCircleBounce(CircularEntity first, CircularEntity second) {
     if (identical(first, second) || !_circleCollision(first, second)) return;
 
     Vector collision = Vector(second.x - first.x, second.y - first.y);
@@ -54,7 +54,7 @@ class FootballCollisionSystem implements GameSystem {
   }
 
   /// Performs circle-field top-bottom bouncing.
-  void _circleFieldBounceTB(CircularSprite circular) {
+  void _circleFieldBounceTB(CircularEntity circular) {
     if (circular.y - circular.radius <= _game.field.position.y) {
       circular.y = _game.field.position.y + circular.radius;
       circular.velocity.y *= -1;
@@ -111,7 +111,7 @@ class FootballCollisionSystem implements GameSystem {
   }
 
   /// Checks if [c1] and [c2] collides.
-  bool _circleCollision(CircularSprite c1, CircularSprite c2) {
+  bool _circleCollision(CircularEntity c1, CircularEntity c2) {
     double dx = c1.x - c2.x;
     double dy = c1.y - c2.y;
     return dx * dx + dy * dy <=

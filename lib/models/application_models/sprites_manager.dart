@@ -1,7 +1,7 @@
 import 'package:gamez/gamez.dart';
 
 class SpritesManager {
-  Map<String, Sprite> _sprites = Map<String, Sprite>();
+  Map<String, ImageRenderer> _sprites = Map<String, ImageRenderer>();
 
   SpritesManager() {
     /// football mode sprites
@@ -23,13 +23,14 @@ class SpritesManager {
   }
 
   /// Creates a new sprites.
-  void _createSprite(String pathname) => _sprites[pathname] = Sprite(pathname);
+  void _createSprite(String pathname) =>
+      _sprites[pathname] = ImageRenderer(pathname);
 
   /// Loads all sprites.
   Future<void> loadSprites() async {
-    for (Sprite sprite in _sprites.values) await sprite.load();
+    for (ImageRenderer sprite in _sprites.values) await sprite.load();
   }
 
   /// All loaded sprites.
-  Map<String, Sprite> get sprites => _sprites;
+  Map<String, ImageRenderer> get sprites => _sprites;
 }

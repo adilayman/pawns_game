@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MessagePopUp extends StatelessWidget {
   final String message;
 
-  MessagePopUp({@required this.message});
+  MessagePopUp({required this.message});
 
   /// Shows this message pop up.
   void show(BuildContext context) {

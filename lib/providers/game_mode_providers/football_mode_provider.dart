@@ -18,24 +18,25 @@ import 'package:gamez/gamez.dart';
 
 class FootballModeProvider extends Game {
   /// football field renderer.
-  FootballField _field;
+  late FootballField _field;
 
   /// football score bar renderer.
-  FootballScoreBar _scoreBar;
+  late FootballScoreBar _scoreBar;
 
   /// current composition for both teams
-  FootballComposition _composition;
+  late FootballComposition _composition;
 
-  FootballTeam _firstTeam;
-  FootballTeam _secondTeam;
-  Football _ball;
+  FootballTeam? _firstTeam;
+  FootballTeam? _secondTeam;
+  late Football _ball;
 
-  FootballCollisionSystem _collisionSystem;
-  FootballGoalSystem _goalSystem;
+  late FootballCollisionSystem _collisionSystem;
+  late FootballGoalSystem _goalSystem;
 
   FootballModeProvider() {
     _collisionSystem = FootballCollisionSystem(this);
     _goalSystem = FootballGoalSystem(this);
+    _createAllRenders();
   }
 
   @override
@@ -43,13 +44,6 @@ class FootballModeProvider extends Game {
     for (GameEntity entity in entities) entity.reset();
     _ball.position = _field.center.clone;
     _scoreBar.reset();
-  }
-
-  @override
-  void init(BuildContext context) {
-    if (isInit) return;
-    super.init(context);
-    _createAllRenders();
   }
 
   /// Checks if at least one pawn in [team] is pressed.
@@ -63,7 +57,7 @@ class FootballModeProvider extends Game {
   @override
   void onLongPressEnd(Offset position) {
     // we only switch sides if a pawn is already pressed.
-    bool switchSides = _isPressed(_firstTeam) || _isPressed(_secondTeam);
+    bool switchSides = _isPressed(_firstTeam!) || _isPressed(_secondTeam!);
     super.onLongPressEnd(position);
     if (switchSides) nextRound();
   }
@@ -144,7 +138,7 @@ class FootballModeProvider extends Game {
       _composition.defaultComposition(FootballTeamSide.Left),
     );
 
-    _firstTeam.turn = true;
+    _firstTeam!.turn = true;
 
     _secondTeam = FootballTeam(
       app.secondPlayer,
@@ -152,20 +146,20 @@ class FootballModeProvider extends Game {
       _composition.defaultComposition(FootballTeamSide.Right),
     );
 
-    addEntity(_firstTeam);
-    addEntity(_secondTeam);
+    addEntity(_firstTeam!);
+    addEntity(_secondTeam!);
   }
 
   /// Switchs team turns.
   void nextRound() {
-    _firstTeam.turn = !_firstTeam.turn;
-    _secondTeam.turn = !_secondTeam.turn;
+    _firstTeam!.turn = !_firstTeam!.turn;
+    _secondTeam!.turn = !_secondTeam!.turn;
     _scoreBar.reset();
   }
 
-  FootballTeam get firstTeam => _firstTeam;
+  FootballTeam? get firstTeam => _firstTeam;
 
-  FootballTeam get secondTeam => _secondTeam;
+  FootballTeam? get secondTeam => _secondTeam;
 
   Football get ball => _ball;
 

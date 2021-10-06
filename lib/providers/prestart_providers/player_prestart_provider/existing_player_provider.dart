@@ -5,7 +5,7 @@ import 'package:pawns_game/models/application_models/player.dart';
 
 class ExistingPlayerProvider extends ChangeNotifier {
   List<Player> players = [];
-  Player _currentPlayer;
+  Player? _currentPlayer;
 
   Application _app;
 
@@ -14,13 +14,13 @@ class ExistingPlayerProvider extends ChangeNotifier {
     if (players.length > 0) currentPlayer = players[0];
   }
 
-  set currentPlayer(Player player) {
+  set currentPlayer(Player? player) {
     if (_currentPlayer == player) return;
     _currentPlayer = player;
     notifyListeners();
   }
 
-  Player get currentPlayer => _currentPlayer;
+  Player? get currentPlayer => _currentPlayer;
 
   String get name => _currentPlayer?.name ?? "";
 

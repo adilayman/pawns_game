@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 class WinsIndicatorWidget extends StatelessWidget {
   final String wins;
 
-  WinsIndicatorWidget({@required this.wins});
+  WinsIndicatorWidget({required this.wins});
 
   /// Creates an indicator widget.
   Widget _indicatorWidget(Widget child) {

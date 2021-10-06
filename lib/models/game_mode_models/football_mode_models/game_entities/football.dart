@@ -1,9 +1,8 @@
 import 'package:gamez/gamez.dart';
 
-class Football extends CircularSprite {
-  Football(Vector position, Sprite sprite) : super(position, 15) {
-    super.sprite = sprite;
-  }
+class Football extends CircularEntity {
+  Football(Vector position, ImageRenderer? image)
+      : super(position, 15, image: image);
 
   @override
   void update(double dt) {
