@@ -2,8 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
 import 'package:pawns_game/providers/application_providers/application.dart';
 import 'package:pawns_game/models/game_mode_models/football_mode_models/football_composition.dart';
 import 'package:pawns_game/models/game_mode_models/football_mode_models/game_entities/football.dart';
@@ -26,17 +24,20 @@ class FootballModeProvider extends Game {
   /// current composition for both teams
   late FootballComposition _composition;
 
-  FootballTeam? _firstTeam;
-  FootballTeam? _secondTeam;
+  late FootballTeam _firstTeam;
+  late FootballTeam _secondTeam;
   late Football _ball;
 
   late FootballCollisionSystem _collisionSystem;
   late FootballGoalSystem _goalSystem;
 
-  FootballModeProvider() {
+  late BuildContext context;
+  late Application app;
+
+  FootballModeProvider(this.context, this.app) {
+    _createAllRenders();
     _collisionSystem = FootballCollisionSystem(this);
     _goalSystem = FootballGoalSystem(this);
-    _createAllRenders();
   }
 
   @override
@@ -57,7 +58,7 @@ class FootballModeProvider extends Game {
   @override
   void onLongPressEnd(Offset position) {
     // we only switch sides if a pawn is already pressed.
-    bool switchSides = _isPressed(_firstTeam!) || _isPressed(_secondTeam!);
+    bool switchSides = _isPressed(_firstTeam) || _isPressed(_secondTeam);
     super.onLongPressEnd(position);
     if (switchSides) nextRound();
   }
@@ -72,7 +73,6 @@ class FootballModeProvider extends Game {
 
   /// Renders the background color.
   void _renderBackground(Canvas canvas) {
-    Application app = Provider.of<Application>(context, listen: false);
     final paint = Paint()
       ..shader = ui.Gradient.linear(
         Offset.zero,
@@ -118,7 +118,6 @@ class FootballModeProvider extends Game {
 
   /// Creates the football.
   void _createFootball(Size scoreBarSize) {
-    Application app = Provider.of<Application>(context, listen: false);
     _ball = Football(
       Vector(size.width / 2, (size.height + scoreBarSize.height) / 2),
       app.sprites["assets/png/football_mode/football.png"],
@@ -130,15 +129,13 @@ class FootballModeProvider extends Game {
   void _createFootballTeams() {
     _composition = FootballComposition(_field);
 
-    Application app = Provider.of<Application>(context, listen: false);
-
     _firstTeam = FootballTeam(
       app.firstPlayer,
       app.sprites["assets/png/pawns/red_pawn.png"],
       _composition.defaultComposition(FootballTeamSide.Left),
     );
 
-    _firstTeam!.turn = true;
+    _firstTeam.turn = true;
 
     _secondTeam = FootballTeam(
       app.secondPlayer,
@@ -146,20 +143,20 @@ class FootballModeProvider extends Game {
       _composition.defaultComposition(FootballTeamSide.Right),
     );
 
-    addEntity(_firstTeam!);
-    addEntity(_secondTeam!);
+    addEntity(_firstTeam);
+    addEntity(_secondTeam);
   }
 
   /// Switchs team turns.
   void nextRound() {
-    _firstTeam!.turn = !_firstTeam!.turn;
-    _secondTeam!.turn = !_secondTeam!.turn;
+    _firstTeam.turn = !_firstTeam.turn;
+    _secondTeam.turn = !_secondTeam.turn;
     _scoreBar.reset();
   }
 
-  FootballTeam? get firstTeam => _firstTeam;
+  FootballTeam get firstTeam => _firstTeam;
 
-  FootballTeam? get secondTeam => _secondTeam;
+  FootballTeam get secondTeam => _secondTeam;
 
   Football get ball => _ball;
 

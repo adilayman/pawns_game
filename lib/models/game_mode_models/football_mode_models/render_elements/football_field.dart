@@ -18,9 +18,10 @@ class FootballField extends GameEntity {
 
   /// Loads the two goals' sprites.
   void _loadSpritesGoals() {
-    Application app = Provider.of<Application>(_game.context, listen: false);
-    _leftGoalSprite = app.sprites["assets/png/football_mode/left_goal.png"];
-    _rightGoalSprite = app.sprites["assets/png/football_mode/right_goal.png"];
+    _leftGoalSprite =
+        _game.app.sprites["assets/png/football_mode/left_goal.png"];
+    _rightGoalSprite =
+        _game.app.sprites["assets/png/football_mode/right_goal.png"];
   }
 
   /// Renders field borders.

@@ -20,16 +20,15 @@ class FootballScoreBar extends GameEntity {
 
   FootballScoreBar(Size size, this._game) : super(Vector(0, 0), size) {
     _firstProgressBar = _createProgressBar(
-        Vector(size.width * 0.25, size.height / 2), _game.firstTeam!);
+        Vector(size.width * 0.25, size.height / 2), _game.firstTeam);
     _secondProgressBar = _createProgressBar(
-        Vector(size.width * 0.75, size.height / 2), _game.secondTeam!);
+        Vector(size.width * 0.75, size.height / 2), _game.secondTeam);
   }
 
   /// Creates a circular progress bar given a [team].
   CircularProgressBar _createProgressBar(Vector position, FootballTeam team) {
-    Application app = Provider.of<Application>(_game.context, listen: false);
     return CircularProgressBar(position, size.height * 0.4, _maxTime,
-        image: app.sprites[team.player!.avatar]);
+        image: _game.app.sprites[team.player!.avatar]);
   }
 
   /// Renders score bar background.
@@ -76,9 +75,9 @@ class FootballScoreBar extends GameEntity {
 
   /// Renders winner name.
   void _renderWinnerName(Canvas canvas) {
-    String winnerName = _game.firstTeam!.winner
-        ? _game.firstTeam!.player!.name
-        : _game.secondTeam!.player!.name;
+    String winnerName = _game.firstTeam.winner
+        ? _game.firstTeam.player!.name
+        : _game.secondTeam.player!.name;
 
     TextArea(
       Vector(size.width / 2, size.height / 2),
@@ -95,10 +94,10 @@ class FootballScoreBar extends GameEntity {
 
   /// Renders players' avatars.
   void _renderAvatars(Canvas canvas) {
-    if (_game.firstTeam!.winner || !_game.gameOver)
+    if (_game.firstTeam.winner || !_game.gameOver)
       _firstProgressBar.render(canvas);
 
-    if (_game.secondTeam!.winner || !_game.gameOver)
+    if (_game.secondTeam.winner || !_game.gameOver)
       _secondProgressBar.render(canvas);
   }
 
@@ -108,9 +107,9 @@ class FootballScoreBar extends GameEntity {
     if (_game.gameOver || _game.goalSystem.goal) return;
 
     _renderScore(
-        canvas, Offset(size.width * 0.35, size.height / 2), _game.firstTeam!);
+        canvas, Offset(size.width * 0.35, size.height / 2), _game.firstTeam);
     _renderScore(
-        canvas, Offset(size.width * 0.65, size.height / 2), _game.secondTeam!);
+        canvas, Offset(size.width * 0.65, size.height / 2), _game.secondTeam);
   }
 
   @override
@@ -125,7 +124,7 @@ class FootballScoreBar extends GameEntity {
 
   @override
   void update(double dt) {
-    _game.firstTeam!.turn
+    _game.firstTeam.turn
         ? _firstProgressBar.current += dt
         : _secondProgressBar.current += dt;
 

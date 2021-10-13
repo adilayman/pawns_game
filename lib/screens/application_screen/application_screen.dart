@@ -19,15 +19,17 @@ class ApplicationScreen extends StatelessWidget {
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
+    Application app = Application();
+
     return ChangeNotifierProvider(
-      create: (_) => Application(),
+      create: (_) => app,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (_) => LoadingScreen(route: '/prestart_screen'),
           '/prestart_screen': (_) => PrestartScreen(),
           '/home': (_) => HomeScreen(),
-          '/football_game': (_) => FootballModeScreen(),
+          '/football_game': (_) => FootballModeScreen(context, app),
         },
       ),
     );

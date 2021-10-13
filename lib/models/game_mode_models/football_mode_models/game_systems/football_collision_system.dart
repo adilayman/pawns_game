@@ -13,8 +13,8 @@ class FootballCollisionSystem implements GameSystem {
   @override
   void perform() {
     List<FootballPawn> pawns = [];
-    pawns.addAll(_game.firstTeam!.pawns);
-    pawns.addAll(_game.secondTeam!.pawns);
+    pawns.addAll(_game.firstTeam.pawns);
+    pawns.addAll(_game.secondTeam.pawns);
 
     for (int i = 0; i < pawns.length; i++) {
       for (int j = i + 1; j < pawns.length; j++)
