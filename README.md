@@ -53,16 +53,16 @@ You can install [pawns_game.apk](pawns_game.apk) on your device.
 
 ## Credits
 
-- Application logo: https://dribbble.com/shots/15458614-G-P-logo-design-concept
+- Application logo: <https://dribbble.com/shots/15458614-G-P-logo-design-concept>
 
-- Players' avatars are generated with https://personas.draftbit.com/
+- Players' avatars are generated with <https://personas.draftbit.com/>
 
-- Football image: https://www.clipartmax.com/middle/m2i8H7A0N4A0A0m2_image-dessin-ballon-de-foot-nouveau-photographie-image-football-ball-vector/
+- Football image: <https://www.clipartmax.com/middle/m2i8H7A0N4A0A0m2_image-dessin-ballon-de-foot-nouveau-photographie-image-football-ball-vector/>
 
-- Pawns images: https://kenney.nl/assets/rolling-ball-assets
+- Pawns images: <https://kenney.nl/assets/rolling-ball-assets>
 
-- Goals images: https://kenney.nl/assets/sports-pack
+- Goals images: <https://kenney.nl/assets/sports-pack>
 
-- Trophy image: https://kenney.nl/assets/game-icons
+- Trophy image: <https://kenney.nl/assets/game-icons>
 
 Thanks to them!

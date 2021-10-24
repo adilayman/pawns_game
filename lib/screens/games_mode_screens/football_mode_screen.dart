@@ -8,8 +8,7 @@ import 'package:gamez/gamez.dart';
 
 // ignore: must_be_immutable
 class FootballModeScreen extends GameWidget {
-  FootballModeScreen(BuildContext context, Application app)
-      : super(game: FootballModeProvider(context, app)) {
+  FootballModeScreen(Application app) : super(game: FootballModeProvider(app)) {
     _createQuitButton();
   }
 
@@ -19,8 +18,7 @@ class FootballModeScreen extends GameWidget {
       AppIconButton(
         onPressed: () {
           game.gameLoop.stop();
-          FootballModeProvider g = game as FootballModeProvider;
-          Navigator.pushNamed(g.context, "/home");
+          Navigator.pushNamed(game.context, "/home");
         },
         icon: Icons.power_settings_new,
         primaryColor: Colors.red.shade500,

@@ -112,10 +112,10 @@ packages:
   gamez:
     dependency: "direct main"
     description:
-      path: "../gamez"
-      relative: true
-    source: path
-    version: "0.0.2+4"
+      name: gamez
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   image:
     dependency: transitive
     description:

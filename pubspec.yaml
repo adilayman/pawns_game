@@ -10,8 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gamez:
-    path: ../gamez
+  gamez: ^0.0.3
   cupertino_icons: ^1.0.3
   provider: ^6.0.1
   path_provider: ^2.0.4

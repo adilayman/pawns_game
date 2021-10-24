@@ -31,10 +31,9 @@ class FootballModeProvider extends Game {
   late FootballCollisionSystem _collisionSystem;
   late FootballGoalSystem _goalSystem;
 
-  late BuildContext context;
   late Application app;
 
-  FootballModeProvider(this.context, this.app) {
+  FootballModeProvider(this.app) {
     _createAllRenders();
     _collisionSystem = FootballCollisionSystem(this);
     _goalSystem = FootballGoalSystem(this);

@@ -29,7 +29,7 @@ class ApplicationScreen extends StatelessWidget {
           '/': (_) => LoadingScreen(route: '/prestart_screen'),
           '/prestart_screen': (_) => PrestartScreen(),
           '/home': (_) => HomeScreen(),
-          '/football_game': (_) => FootballModeScreen(context, app),
+          '/football_game': (_) => FootballModeScreen(app),
         },
       ),
     );
