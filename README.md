@@ -3,8 +3,6 @@
 </p>
 <h1 align="center" style="margin-top: 0px;">Pawns Game</h1>
 
-_By Ayman Adil (Last source code update: 07/08/2021)_
-
 ## Description
 
 Pawns Game is a two-players offline game that contains different pawns game modes such as football mode and basketball mode.
