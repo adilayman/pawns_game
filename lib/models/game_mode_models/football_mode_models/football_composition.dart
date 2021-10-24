@@ -7,7 +7,7 @@ enum FootballTeamSide { Left, Right }
 
 class FootballComposition {
   FootballField _field;
-  List<Vector> _composition;
+  late List<Vector> _composition;
 
   FootballComposition(this._field);
 

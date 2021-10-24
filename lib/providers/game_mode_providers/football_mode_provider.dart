@@ -2,8 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
-
 import 'package:pawns_game/providers/application_providers/application.dart';
 import 'package:pawns_game/models/game_mode_models/football_mode_models/football_composition.dart';
 import 'package:pawns_game/models/game_mode_models/football_mode_models/game_entities/football.dart';
@@ -18,22 +16,25 @@ import 'package:gamez/gamez.dart';
 
 class FootballModeProvider extends Game {
   /// football field renderer.
-  FootballField _field;
+  late FootballField _field;
 
   /// football score bar renderer.
-  FootballScoreBar _scoreBar;
+  late FootballScoreBar _scoreBar;
 
   /// current composition for both teams
-  FootballComposition _composition;
+  late FootballComposition _composition;
 
-  FootballTeam _firstTeam;
-  FootballTeam _secondTeam;
-  Football _ball;
+  late FootballTeam _firstTeam;
+  late FootballTeam _secondTeam;
+  late Football _ball;
 
-  FootballCollisionSystem _collisionSystem;
-  FootballGoalSystem _goalSystem;
+  late FootballCollisionSystem _collisionSystem;
+  late FootballGoalSystem _goalSystem;
 
-  FootballModeProvider() {
+  late Application app;
+
+  FootballModeProvider(this.app) {
+    _createAllRenders();
     _collisionSystem = FootballCollisionSystem(this);
     _goalSystem = FootballGoalSystem(this);
   }
@@ -43,13 +44,6 @@ class FootballModeProvider extends Game {
     for (GameEntity entity in entities) entity.reset();
     _ball.position = _field.center.clone;
     _scoreBar.reset();
-  }
-
-  @override
-  void init(BuildContext context) {
-    if (isInit) return;
-    super.init(context);
-    _createAllRenders();
   }
 
   /// Checks if at least one pawn in [team] is pressed.
@@ -78,7 +72,6 @@ class FootballModeProvider extends Game {
 
   /// Renders the background color.
   void _renderBackground(Canvas canvas) {
-    Application app = Provider.of<Application>(context, listen: false);
     final paint = Paint()
       ..shader = ui.Gradient.linear(
         Offset.zero,
@@ -124,7 +117,6 @@ class FootballModeProvider extends Game {
 
   /// Creates the football.
   void _createFootball(Size scoreBarSize) {
-    Application app = Provider.of<Application>(context, listen: false);
     _ball = Football(
       Vector(size.width / 2, (size.height + scoreBarSize.height) / 2),
       app.sprites["assets/png/football_mode/football.png"],
@@ -135,8 +127,6 @@ class FootballModeProvider extends Game {
   /// Creates the two football teams.
   void _createFootballTeams() {
     _composition = FootballComposition(_field);
-
-    Application app = Provider.of<Application>(context, listen: false);
 
     _firstTeam = FootballTeam(
       app.firstPlayer,

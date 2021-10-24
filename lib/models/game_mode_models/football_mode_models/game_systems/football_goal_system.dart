@@ -34,8 +34,8 @@ class FootballGoalSystem implements GameSystem {
     if (team.score < _maxScore) return;
 
     // increase wins and update the save file.
-    team.player.wins++;
-    Provider.of<Application>(_game.context, listen: false).updateSaveFile();
+    team.player!.wins++;
+    _game.app.updateSaveFile();
 
     // the game is over and the winner is defined.
     _game.gameOver = true;

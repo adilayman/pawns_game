@@ -9,7 +9,7 @@ class LoadingScreen extends StatelessWidget {
   /// Redirection route after loading.
   final String route;
 
-  LoadingScreen({@required this.route});
+  LoadingScreen({required this.route});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class LoadingScreen extends StatelessWidget {
       builder: (context, snapshot) {
         // When ready => redirect to the chosen route.
         if (snapshot.connectionState == ConnectionState.done)
-          SchedulerBinding.instance.addPostFrameCallback((_) {
+          SchedulerBinding.instance!.addPostFrameCallback((_) {
             Navigator.pushReplacementNamed(context, route);
           });
 

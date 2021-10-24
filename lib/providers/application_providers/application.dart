@@ -9,8 +9,8 @@ import 'package:pawns_game/models/application_models/save_file_manager.dart';
 import 'package:pawns_game/models/application_models/sprites_manager.dart';
 
 class Application extends ChangeNotifier {
-  Player firstPlayer;
-  Player secondPlayer;
+  Player? firstPlayer;
+  Player? secondPlayer;
 
   SpritesManager _spritesManager = SpritesManager();
   SaveFileManager _saveFileManager = SaveFileManager("save.txt");
@@ -37,5 +37,5 @@ class Application extends ChangeNotifier {
   Map<String, Player> get players => _saveFileManager.players;
 
   /// All loaded sprites.
-  Map<String, Sprite> get sprites => _spritesManager.sprites;
+  Map<String, ImageRenderer> get sprites => _spritesManager.sprites;
 }

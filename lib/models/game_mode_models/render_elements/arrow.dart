@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:gamez/gamez.dart';
 
-class Arrow extends RenderElement {
+class Arrow extends GameEntity {
   double angle = 0;
 
   double _barAngle = 0.78;
@@ -56,4 +56,10 @@ class Arrow extends RenderElement {
 
   @override
   bool contains(Offset position) => false;
+
+  @override
+  void reset() {}
+
+  @override
+  void update(double dt) {}
 }

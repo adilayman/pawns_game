@@ -9,11 +9,11 @@ import 'package:pawns_game/models/game_mode_models/render_elements/text_area.dar
 
 import 'package:gamez/gamez.dart';
 
-class FootballScoreBar extends RenderElement {
+class FootballScoreBar extends GameEntity {
   FootballModeProvider _game;
 
-  CircularProgressBar _firstProgressBar;
-  CircularProgressBar _secondProgressBar;
+  late CircularProgressBar _firstProgressBar;
+  late CircularProgressBar _secondProgressBar;
 
   /// max time for plating.
   double _maxTime = 30;
@@ -27,9 +27,8 @@ class FootballScoreBar extends RenderElement {
 
   /// Creates a circular progress bar given a [team].
   CircularProgressBar _createProgressBar(Vector position, FootballTeam team) {
-    Application app = Provider.of<Application>(_game.context, listen: false);
     return CircularProgressBar(position, size.height * 0.4, _maxTime,
-        sprite: app.sprites[team.player.avatar]);
+        image: _game.app.sprites[team.player!.avatar]);
   }
 
   /// Renders score bar background.
@@ -70,15 +69,15 @@ class FootballScoreBar extends RenderElement {
 
   /// Renders goal text.
   void _renderGoalText(Canvas canvas) {
-    TextArea(Vector(size.width / 2, size.height / 2), "GOAL!!!", fontSize: 38)
+    TextArea(Vector(size.width / 2, size.height / 2), "GOAL!!", fontSize: 38)
         .render(canvas);
   }
 
   /// Renders winner name.
   void _renderWinnerName(Canvas canvas) {
     String winnerName = _game.firstTeam.winner
-        ? _game.firstTeam.player.name
-        : _game.secondTeam.player.name;
+        ? _game.firstTeam.player!.name
+        : _game.secondTeam.player!.name;
 
     TextArea(
       Vector(size.width / 2, size.height / 2),

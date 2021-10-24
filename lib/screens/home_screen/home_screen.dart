@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         AppButton(
           height: 80,
           text: "Basketball Game",
-          onPressed: null,
+          onPressed: () {},
         ),
       ],
     );

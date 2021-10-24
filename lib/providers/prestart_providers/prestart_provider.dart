@@ -6,8 +6,8 @@ import 'package:pawns_game/providers/prestart_providers/player_prestart_provider
 class PrestartProvider extends ChangeNotifier {
   Application _app;
 
-  PlayerPrestartProvider firstPlayerProvider;
-  PlayerPrestartProvider secondPlayerProvider;
+  late PlayerPrestartProvider firstPlayerProvider;
+  late PlayerPrestartProvider secondPlayerProvider;
 
   PrestartProvider(this._app) {
     firstPlayerProvider = PlayerPrestartProvider(_app);
@@ -40,5 +40,5 @@ class PrestartProvider extends ChangeNotifier {
   }
 
   /// Checks the validy of a given [name].
-  bool _validName(String name) => name != null && name.isNotEmpty;
+  bool _validName(String? name) => name != null && name.isNotEmpty;
 }

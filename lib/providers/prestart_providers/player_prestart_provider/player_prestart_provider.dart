@@ -9,15 +9,15 @@ enum PlayerPrestartState { Home, ExistingPlayer, NewPlayer }
 class PlayerPrestartProvider extends ChangeNotifier {
   PlayerPrestartState _state = PlayerPrestartState.Home;
 
-  NewPlayerProvider newPlayerProvider;
-  ExistingPlayerProvider existingPlayerProvider;
+  late NewPlayerProvider newPlayerProvider;
+  late ExistingPlayerProvider existingPlayerProvider;
 
   PlayerPrestartProvider(Application app) {
     newPlayerProvider = NewPlayerProvider(app);
     existingPlayerProvider = ExistingPlayerProvider(app);
   }
 
-  String get name {
+  String? get name {
     if (_state == PlayerPrestartState.NewPlayer)
       return newPlayerProvider.name;
     else if (_state == PlayerPrestartState.ExistingPlayer)
@@ -26,7 +26,7 @@ class PlayerPrestartProvider extends ChangeNotifier {
       return "";
   }
 
-  String get avatar {
+  String? get avatar {
     if (_state == PlayerPrestartState.NewPlayer)
       return newPlayerProvider.avatar;
     else if (_state == PlayerPrestartState.ExistingPlayer)

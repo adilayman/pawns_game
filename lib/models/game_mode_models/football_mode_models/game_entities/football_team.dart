@@ -4,9 +4,9 @@ import 'package:gamez/gamez.dart';
 import 'package:pawns_game/models/application_models/player.dart';
 import 'package:pawns_game/models/game_mode_models/football_mode_models/game_entities/football_pawn.dart';
 
-class FootballTeam extends GameEntity {
+class FootballTeam extends GameEntity implements LongPressDetector {
   /// The corresponding player of this team.
-  Player player;
+  Player? player;
 
   /// Initial positions of pawns
   List<Vector> pawnsPositions;
@@ -17,11 +17,10 @@ class FootballTeam extends GameEntity {
   bool _turn = false;
   bool winner = false;
 
-  FootballTeam(this.player, Sprite sprite, this.pawnsPositions)
-      : super(Vector(0, 0), Size(0, 0)) {
-    this.sprite = sprite;
+  FootballTeam(this.player, ImageRenderer? image, this.pawnsPositions)
+      : super(Vector(0, 0), Size(0, 0), image: image) {
     for (Vector position in pawnsPositions)
-      pawns.add(FootballPawn(Vector(position.x, position.y), sprite));
+      pawns.add(FootballPawn(Vector(position.x, position.y), image));
   }
 
   @override

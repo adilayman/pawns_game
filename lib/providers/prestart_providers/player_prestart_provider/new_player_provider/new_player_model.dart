@@ -7,7 +7,7 @@ import 'package:pawns_game/providers/prestart_providers/player_prestart_provider
 class NewPlayerProvider extends ChangeNotifier {
   Application _app;
 
-  AvatarSelectionProvider _avatarSelectionProvider;
+  late AvatarSelectionProvider _avatarSelectionProvider;
   String name = "";
 
   NewPlayerProvider(this._app) {
@@ -20,7 +20,7 @@ class NewPlayerProvider extends ChangeNotifier {
     _app.addPlayer(Player(name, avatar, 0));
   }
 
-  String get avatar => _avatarSelectionProvider.selectedAvatar.pathname;
+  String get avatar => _avatarSelectionProvider.selectedAvatar!.pathname;
 
   AvatarSelectionProvider get avatarSelectionProvider =>
       _avatarSelectionProvider;

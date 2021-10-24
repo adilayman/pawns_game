@@ -8,14 +8,15 @@ import 'package:pawns_game/widgets/player_widgets/wins_indicator_widget.dart';
 
 class ExistingPlayerWidget extends StatelessWidget {
   /// Returns a list of existing players.
-  List<DropdownMenuItem> _dropDownMenuItems(ExistingPlayerProvider model) {
-    return model.players.map<DropdownMenuItem<Player>>((Player player) {
+  List<DropdownMenuItem<Player>>? _dropDownMenuItems(
+      ExistingPlayerProvider model) {
+    return model.players.map<DropdownMenuItem<Player>>((Player? player) {
       return DropdownMenuItem<Player>(
         value: player,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(player.name),
+            Text(player!.name),
             WinsIndicatorWidget(
               wins: player.wins.toString(),
             ),
@@ -44,7 +45,8 @@ class ExistingPlayerWidget extends StatelessWidget {
               isExpanded: true,
               style: TextStyle(color: Colors.blueGrey.shade900),
               underline: Container(height: 2, color: Colors.blueGrey.shade900),
-              onChanged: (Player newPlayer) => model.currentPlayer = newPlayer,
+              onChanged: (Player? newPlayer) =>
+                  model.currentPlayer = newPlayer!,
               items: _dropDownMenuItems(model),
             ),
           ),
