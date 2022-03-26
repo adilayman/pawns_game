@@ -1,9 +1,7 @@
 import 'package:flutter/widgets.dart';
-
-import 'package:provider/provider.dart';
-
 import 'package:pawns_game/providers/application_providers/application.dart';
 import 'package:pawns_game/widgets/player_widgets/player_avatar_widget.dart';
+import 'package:provider/provider.dart';
 
 class HomeTopBar extends StatelessWidget {
   @override

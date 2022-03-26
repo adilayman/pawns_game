@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:gamez/gamez.dart';
-
 import 'package:pawns_game/models/application_models/player.dart';
 import 'package:pawns_game/models/application_models/save_file_manager.dart';
 import 'package:pawns_game/models/application_models/sprites_manager.dart';

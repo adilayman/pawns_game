@@ -32,15 +32,15 @@ class SaveFileManager {
     List<String> lines = content.split("\n");
 
     for (String line in lines) {
-      List<String> splitedLine = line.split(" ");
+      List<String> splitLine = line.split(" ");
 
-      if (splitedLine.length != _numberInformation) continue;
+      if (splitLine.length != _numberInformation) continue;
 
       // create a new player instance.
-      _players[splitedLine[0]] = Player(
-        splitedLine[0],
-        splitedLine[1],
-        int.parse(splitedLine[2]),
+      _players[splitLine[0]] = Player(
+        splitLine[0],
+        splitLine[1],
+        int.parse(splitLine[2]),
       );
     }
   }

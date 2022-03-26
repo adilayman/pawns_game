@@ -1,18 +1,16 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-
-import 'package:pawns_game/providers/application_providers/application.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/football_composition.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/game_entities/football.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/game_entities/football_pawn.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/game_entities/football_team.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/game_systems/football_collision_system.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/game_systems/football_goal_system.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/render_elements/football_field.dart';
-import 'package:pawns_game/models/game_mode_models/football_mode_models/render_elements/football_score_bar.dart';
-
 import 'package:gamez/gamez.dart';
+import 'package:pawns_game/models/football_mode_models/football.dart';
+import 'package:pawns_game/models/football_mode_models/football_collision_system.dart';
+import 'package:pawns_game/models/football_mode_models/football_composition.dart';
+import 'package:pawns_game/models/football_mode_models/football_field.dart';
+import 'package:pawns_game/models/football_mode_models/football_goal_system.dart';
+import 'package:pawns_game/models/football_mode_models/football_pawn.dart';
+import 'package:pawns_game/models/football_mode_models/football_score_bar.dart';
+import 'package:pawns_game/models/football_mode_models/football_team.dart';
+import 'package:pawns_game/providers/application_providers/application.dart';
 
 class FootballModeProvider extends Game {
   /// football field renderer.
@@ -146,7 +144,7 @@ class FootballModeProvider extends Game {
     addEntity(_secondTeam);
   }
 
-  /// Switchs team turns.
+  /// Switch team turns.
   void nextRound() {
     _firstTeam.turn = !_firstTeam.turn;
     _secondTeam.turn = !_secondTeam.turn;

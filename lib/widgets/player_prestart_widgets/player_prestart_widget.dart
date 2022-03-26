@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:pawns_game/providers/prestart_providers/player_prestart_provider.dart';
+import 'package:pawns_game/widgets/player_prestart_widgets/existing_player_widget.dart';
+import 'package:pawns_game/widgets/player_prestart_widgets/new_player_widget.dart';
+import 'package:pawns_game/widgets/player_prestart_widgets/player_prestart_home_widget.dart';
 import 'package:provider/provider.dart';
-
-import 'package:pawns_game/providers/prestart_providers/player_prestart_provider/player_prestart_provider.dart';
-import 'package:pawns_game/widgets/player_prestart_widgets/existing_player_widgets/existing_player_widget.dart';
-import 'package:pawns_game/widgets/player_prestart_widgets/new_player_widgets/new_player_widget.dart';
-import 'package:pawns_game/widgets/player_prestart_widgets/player_prestart_home_widgets/player_prestart_home_widget.dart';
 
 class PlayerPrestartWidget extends StatelessWidget {
   final String label;

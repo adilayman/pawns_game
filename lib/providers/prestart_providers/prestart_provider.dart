@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:pawns_game/providers/application_providers/application.dart';
-import 'package:pawns_game/providers/prestart_providers/player_prestart_provider/player_prestart_provider.dart';
+import 'package:pawns_game/providers/prestart_providers/player_prestart_provider.dart';
 
 class PrestartProvider extends ChangeNotifier {
   Application _app;
