@@ -3,11 +3,11 @@ import 'package:flutter/widgets.dart';
 class WinsIndicatorWidget extends StatelessWidget {
   final String wins;
 
-  WinsIndicatorWidget({required this.wins});
+  const WinsIndicatorWidget({Key? key, required this.wins}) : super(key: key);
 
   /// Creates an indicator widget.
   Widget _indicatorWidget(Widget child) {
-    return Container(height: 25, width: 25, child: child);
+    return SizedBox(height: 25, width: 25, child: child);
   }
 
   @override
