@@ -3,7 +3,7 @@
 </p>
 <h1 align="center" style="margin-top: 0px;">Pawns Game</h1>
 
-[![gamEZ](https://img.shields.io/badge/gamEZ-engine-orange?style=flat-square)](https://github.com/adilayman/gamez) [![GitHub top language](https://img.shields.io/github/languages/top/adilayman/pawns_game.svg?style=flat-square)](https://github.com/adilayman/pawns_game) [![GitHub issues](https://img.shields.io/github/issues/adilayman/pawns_game?style=flat-square)](https://github.com/adilayman/pawns_game/issues) [![License](https://img.shields.io/github/license/adilayman/pawns_game?style=flat-square)](https://github.com/adilayman/pawns_game/blob/main/LICENSE)
+[![gamEZ](https://img.shields.io/badge/gamEZ-engine-orange?style=flat-square)](https://github.com/adilayman/gamez) [![GitHub top language](https://img.shields.io/github/languages/top/adilayman/pawns_game.svg?style=flat-square)](https://github.com/adilayman/pawns_game) [![GitHub issues](https://img.shields.io/github/issues/adilayman/pawns_game?style=flat-square)](https://github.com/adilayman/pawns_game/issues) [![License](https://img.shields.io/github/license/adilayman/pawns_game?style=flat-square)](https://github.com/adilayman/pawns_game/blob/master/LICENSE)
 
 ## Description
 
