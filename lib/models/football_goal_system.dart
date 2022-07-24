@@ -5,10 +5,10 @@ import 'package:pawns_game/providers/football_mode_provider.dart';
 
 /// Football goal score system
 class FootballGoalSystem {
-  FootballModeProvider _game;
+  final FootballModeProvider _game;
 
   bool _goal = false;
-  int _maxScore = 2;
+  final int _maxScore = 2;
 
   FootballGoalSystem(this._game);
 
@@ -44,10 +44,11 @@ class FootballGoalSystem {
 
   /// Checks goal for both teams.
   void _checkGoal() {
-    if (_checkTeamGoal(_game.firstTeam, _isRightGoal()))
+    if (_checkTeamGoal(_game.firstTeam, _isRightGoal())) {
       _game.secondTeam.turn = true;
-    else if (_checkTeamGoal(_game.secondTeam, _isLeftGoal()))
+    } else if (_checkTeamGoal(_game.secondTeam, _isLeftGoal())) {
       _game.firstTeam.turn = true;
+    }
 
     if (_goal) _game.gameLoop.wait(3, afterWait: () => _goal = false);
   }

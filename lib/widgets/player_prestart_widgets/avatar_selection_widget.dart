@@ -7,6 +7,8 @@ import 'package:pawns_game/providers/avatar_selection_provider.dart';
 import 'package:gamez/gamez.dart';
 
 class AvatarSelectionWidget extends StatelessWidget {
+  const AvatarSelectionWidget({Key? key}) : super(key: key);
+
   /// Returns a check box widget for the selected avatar.
   Widget _checkBoxWidget(AvatarSelectionProvider model, ImageRenderer avatar) {
     return model.isSelected(avatar)
@@ -18,8 +20,8 @@ class AvatarSelectionWidget extends StatelessWidget {
   Widget _avatarWidget(AvatarSelectionProvider model, ImageRenderer avatar) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.all(0.0),
-        shape: CircleBorder(),
+        padding: const EdgeInsets.all(0.0),
+        shape: const CircleBorder(),
       ),
       onPressed: () => model.selectedAvatar = avatar,
       child: RawImage(
@@ -33,7 +35,7 @@ class AvatarSelectionWidget extends StatelessWidget {
   /// Creates a list of buttons' avatars.
   List<Widget> _createAvatarButtons(AvatarSelectionProvider model) {
     List<Widget> widgets = [];
-    model.avatars.forEach((avatar) {
+    for (ImageRenderer? avatar in model.avatars) {
       widgets.add(Stack(
         alignment: Alignment.topRight,
         children: [
@@ -41,7 +43,7 @@ class AvatarSelectionWidget extends StatelessWidget {
           _checkBoxWidget(model, avatar),
         ],
       ));
-    });
+    }
     return widgets;
   }
 

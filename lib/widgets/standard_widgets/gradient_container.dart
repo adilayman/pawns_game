@@ -4,7 +4,8 @@ class GradientContainer extends StatelessWidget {
   final Widget child;
   final List<Color> colors;
 
-  GradientContainer({required this.colors, required this.child});
+  const GradientContainer({Key? key, required this.colors, required this.child})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

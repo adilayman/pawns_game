@@ -14,7 +14,7 @@ class TextArea extends GameEntity {
     TextSpan span = TextSpan(
       style: TextStyle(
         color: Colors.white,
-        fontSize: this.fontSize,
+        fontSize: fontSize,
         fontFamily: 'GearUp',
       ),
       text: text,

@@ -7,6 +7,8 @@ import 'package:pawns_game/widgets/player_prestart_widgets/avatar_selection_widg
 import 'package:pawns_game/widgets/player_prestart_widgets/new_player_name_input.dart';
 
 class NewPlayerWidget extends StatelessWidget {
+  const NewPlayerWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Consumer<NewPlayerProvider>(
@@ -16,10 +18,10 @@ class NewPlayerWidget extends StatelessWidget {
             NewPlayerNameInput(
               onSubmitted: (value) => newPlayerProvider.name = value,
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             ChangeNotifierProvider.value(
               value: newPlayerProvider.avatarSelectionProvider,
-              child: AvatarSelectionWidget(),
+              child: const AvatarSelectionWidget(),
             ),
           ],
         );

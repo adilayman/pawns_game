@@ -6,10 +6,11 @@ class PrestartHomeWidget extends StatelessWidget {
   final Function onPressedExisting;
   final Function onPressedNew;
 
-  PrestartHomeWidget({
+  const PrestartHomeWidget({
+    Key? key,
     required this.onPressedExisting,
     required this.onPressedNew,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

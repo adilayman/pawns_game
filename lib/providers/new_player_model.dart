@@ -5,7 +5,7 @@ import 'package:pawns_game/models/player.dart';
 import 'package:pawns_game/providers/avatar_selection_provider.dart';
 
 class NewPlayerProvider extends ChangeNotifier {
-  Application _app;
+  final Application _app;
 
   late AvatarSelectionProvider _avatarSelectionProvider;
   String name = "";

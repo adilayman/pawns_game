@@ -10,7 +10,9 @@ class PlayerAvatarWidget extends StatelessWidget {
   final Player? player;
   final Alignment trophyAlign;
 
-  PlayerAvatarWidget({required this.player, required this.trophyAlign});
+  const PlayerAvatarWidget(
+      {Key? key, required this.player, required this.trophyAlign})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:pawns_game/providers/application.dart';
 import 'package:pawns_game/providers/player_prestart_provider.dart';
 
 class PrestartProvider extends ChangeNotifier {
-  Application _app;
+  final Application _app;
 
   late PlayerPrestartProvider firstPlayerProvider;
   late PlayerPrestartProvider secondPlayerProvider;
@@ -18,11 +18,13 @@ class PrestartProvider extends ChangeNotifier {
   void verifyPlayersInfo() {
     _verifyNames();
 
-    if (firstPlayerProvider.state == PlayerPrestartState.NewPlayer)
+    if (firstPlayerProvider.state == PlayerPrestartState.newPlayer) {
       firstPlayerProvider.newPlayerProvider.createNewPlayer();
+    }
 
-    if (secondPlayerProvider.state == PlayerPrestartState.NewPlayer)
+    if (secondPlayerProvider.state == PlayerPrestartState.newPlayer) {
       secondPlayerProvider.newPlayerProvider.createNewPlayer();
+    }
 
     // Save selected players.
     _app.firstPlayer = _app.players[firstPlayerProvider.name];
@@ -32,11 +34,13 @@ class PrestartProvider extends ChangeNotifier {
   /// Verify players' names input.
   void _verifyNames() {
     if (!_validName(firstPlayerProvider.name) ||
-        !_validName(secondPlayerProvider.name))
+        !_validName(secondPlayerProvider.name)) {
       throw "You have to choose two players before starting!";
+    }
 
-    if (firstPlayerProvider.name == secondPlayerProvider.name)
+    if (firstPlayerProvider.name == secondPlayerProvider.name) {
       throw "You have to choose different players!";
+    }
   }
 
   /// Checks the validy of a given [name].

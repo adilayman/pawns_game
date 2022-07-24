@@ -1,7 +1,7 @@
 import 'package:gamez/gamez.dart';
 
 class SpritesManager {
-  Map<String, ImageRenderer> _sprites = Map<String, ImageRenderer>();
+  final Map<String, ImageRenderer> _sprites = {};
 
   SpritesManager() {
     /// football mode sprites
@@ -18,8 +18,9 @@ class SpritesManager {
     _createSprite("assets/png/app_logo.png");
 
     // avatars sprites
-    for (var i = 1; i <= 18; ++i)
+    for (var i = 1; i <= 18; ++i) {
       _createSprite("assets/png/avatars/avatar_$i.png");
+    }
   }
 
   /// Creates a new sprites.
@@ -28,7 +29,9 @@ class SpritesManager {
 
   /// Loads all sprites.
   Future<void> loadSprites() async {
-    for (ImageRenderer sprite in _sprites.values) await sprite.load();
+    for (ImageRenderer sprite in _sprites.values) {
+      await sprite.load();
+    }
   }
 
   /// All loaded sprites.

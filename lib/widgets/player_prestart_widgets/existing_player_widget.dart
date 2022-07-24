@@ -7,6 +7,8 @@ import 'package:pawns_game/models/player.dart';
 import 'package:pawns_game/widgets/player_widgets/wins_indicator_widget.dart';
 
 class ExistingPlayerWidget extends StatelessWidget {
+  const ExistingPlayerWidget({Key? key}) : super(key: key);
+
   /// Returns a list of existing players.
   List<DropdownMenuItem<Player>>? _dropDownMenuItems(
       ExistingPlayerProvider model) {
@@ -36,10 +38,10 @@ class ExistingPlayerWidget extends StatelessWidget {
             color: Colors.white,
             height: 50,
             width: 200,
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
             child: DropdownButton<Player>(
               value: model.currentPlayer,
-              icon: Icon(Icons.arrow_drop_down),
+              icon: const Icon(Icons.arrow_drop_down),
               iconSize: 24,
               elevation: 16,
               isExpanded: true,

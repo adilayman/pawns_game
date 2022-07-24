@@ -8,13 +8,13 @@ import 'package:pawns_game/entities/text_area.dart';
 import 'package:gamez/gamez.dart';
 
 class FootballScoreBar extends GameEntity {
-  FootballModeProvider _game;
+  final FootballModeProvider _game;
 
   late CircularProgressBar _firstProgressBar;
   late CircularProgressBar _secondProgressBar;
 
   /// max time for plating.
-  double _maxTime = 30;
+  final double _maxTime = 30;
 
   FootballScoreBar(Size size, this._game) : super(Vector(0, 0), size) {
     _firstProgressBar = _createProgressBar(
@@ -31,7 +31,7 @@ class FootballScoreBar extends GameEntity {
 
   /// Renders score bar background.
   void _renderScoreBarBackground(Canvas canvas) {
-    Paint paint = Paint()..color = Color.fromRGBO(225, 255, 225, 0.25);
+    Paint paint = Paint()..color = const Color.fromRGBO(225, 255, 225, 0.25);
     canvas.drawRect(position.toOffset & size, paint);
   }
 
@@ -39,7 +39,7 @@ class FootballScoreBar extends GameEntity {
   void _renderScoreArea(Canvas canvas, Offset position) {
     Paint paint = Paint()..color = Colors.white;
 
-    Size size = Size(40, 40);
+    Size size = const Size(40, 40);
     canvas.drawRect(
       Offset(position.dx - size.width / 2, position.dy - size.height / 2) &
           size,
@@ -50,7 +50,8 @@ class FootballScoreBar extends GameEntity {
   /// Renders score text given a [team].
   void _renderScoreText(Canvas canvas, Offset position, FootballTeam team) {
     TextSpan span = TextSpan(
-      style: TextStyle(color: Colors.black, fontSize: 24, fontFamily: 'GearUp'),
+      style: const TextStyle(
+          color: Colors.black, fontSize: 24, fontFamily: 'GearUp'),
       text: team.score.toString(),
     );
     TextPainter textPainter = TextPainter(
@@ -92,11 +93,13 @@ class FootballScoreBar extends GameEntity {
 
   /// Renders players' avatars.
   void _renderAvatars(Canvas canvas) {
-    if (_game.firstTeam.winner || !_game.gameOver)
+    if (_game.firstTeam.winner || !_game.gameOver) {
       _firstProgressBar.render(canvas);
+    }
 
-    if (_game.secondTeam.winner || !_game.gameOver)
+    if (_game.secondTeam.winner || !_game.gameOver) {
       _secondProgressBar.render(canvas);
+    }
   }
 
   /// Renders both teams' scores.

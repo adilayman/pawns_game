@@ -12,13 +12,13 @@ class Application extends ChangeNotifier {
   Player? firstPlayer;
   Player? secondPlayer;
 
-  SpritesManager _spritesManager = SpritesManager();
-  SaveFileManager _saveFileManager = SaveFileManager("save.txt");
+  final SpritesManager _spritesManager = SpritesManager();
+  final SaveFileManager _saveFileManager = SaveFileManager("save.txt");
 
   List<Color> standardGradient = [
-    Color.fromRGBO(50, 91, 125, 1),
-    Color.fromRGBO(100, 91, 125, 1),
-    Color.fromRGBO(150, 91, 125, 1)
+    const Color.fromRGBO(50, 91, 125, 1),
+    const Color.fromRGBO(100, 91, 125, 1),
+    const Color.fromRGBO(150, 91, 125, 1)
   ];
 
   /// Loads all necessary resources for the application.

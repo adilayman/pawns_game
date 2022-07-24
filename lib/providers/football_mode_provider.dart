@@ -41,7 +41,9 @@ class FootballModeProvider extends Game {
 
   @override
   void reset() {
-    for (GameEntity entity in entities) entity.reset();
+    for (GameEntity entity in entities) {
+      entity.reset();
+    }
     _ball.position = _field.center.clone;
     _scoreBar.reset();
   }
@@ -50,7 +52,9 @@ class FootballModeProvider extends Game {
   bool _isPressed(FootballTeam team) {
     if (!team.turn) return false;
     bool pressed = false;
-    for (FootballPawn pawn in team.pawns) if (pawn.startPress) pressed = true;
+    for (FootballPawn pawn in team.pawns) {
+      if (pawn.startPress) pressed = true;
+    }
     return pressed;
   }
 
@@ -131,7 +135,7 @@ class FootballModeProvider extends Game {
     _firstTeam = FootballTeam(
       app.firstPlayer,
       app.sprites["assets/png/pawns/red_pawn.png"],
-      _composition.defaultComposition(FootballTeamSide.Left),
+      _composition.defaultComposition(FootballTeamSide.left),
     );
 
     _firstTeam.turn = true;
@@ -139,7 +143,7 @@ class FootballModeProvider extends Game {
     _secondTeam = FootballTeam(
       app.secondPlayer,
       app.sprites["assets/png/pawns/blue_pawn.png"],
-      _composition.defaultComposition(FootballTeamSide.Right),
+      _composition.defaultComposition(FootballTeamSide.right),
     );
 
     addEntity(_firstTeam);

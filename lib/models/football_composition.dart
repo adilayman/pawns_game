@@ -3,10 +3,10 @@ import 'package:pawns_game/entities/football_field.dart';
 import 'package:gamez/gamez.dart';
 
 /// Football team side.
-enum FootballTeamSide { Left, Right }
+enum FootballTeamSide { left, right }
 
 class FootballComposition {
-  FootballField _field;
+  final FootballField _field;
   late List<Vector> _composition;
 
   FootballComposition(this._field);
@@ -34,7 +34,7 @@ class FootballComposition {
   }
 
   double _x(double x, FootballTeamSide side) {
-    if (side == FootballTeamSide.Left) return _field.position.x + x;
+    if (side == FootballTeamSide.left) return _field.position.x + x;
     return _field.position.x + (x - _field.size.width).abs();
   }
 

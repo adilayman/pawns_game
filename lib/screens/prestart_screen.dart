@@ -12,6 +12,8 @@ import 'package:pawns_game/widgets/standard_widgets/app_icon_button.dart';
 import 'package:pawns_game/widgets/standard_widgets/message_pop_up.dart';
 
 class PrestartScreen extends StatelessWidget {
+  const PrestartScreen({Key? key}) : super(key: key);
+
   /// Returns a player prestart widget given a model.
   Widget _playerPrestartWidget(PlayerPrestartProvider ppModel, String label) {
     return Expanded(
@@ -37,7 +39,7 @@ class PrestartScreen extends StatelessWidget {
       },
       icon: Icons.play_arrow,
       primaryColor: Colors.green,
-      secondaryColor: Color.fromRGBO(0, 5, 25, 0.25),
+      secondaryColor: const Color.fromRGBO(0, 5, 25, 0.25),
     );
   }
 
@@ -55,7 +57,7 @@ class PrestartScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  AppNameWidget(),
+                  const AppNameWidget(),
                   Expanded(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

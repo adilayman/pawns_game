@@ -1,9 +1,11 @@
 import 'package:flutter/widgets.dart';
 
 class AppNameWidget extends StatelessWidget {
+  const AppNameWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return const SizedBox(
       height: 80,
       child: Align(
         alignment: Alignment.center,

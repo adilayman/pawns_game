@@ -5,10 +5,10 @@ import 'package:pawns_game/providers/application.dart';
 
 class AvatarSelectionProvider extends ChangeNotifier {
   ImageRenderer? _selectedAvatar;
-  Application _app;
+  final Application _app;
 
   late List<ImageRenderer?> _avatars;
-  int _numberAvatars = 18;
+  final int _numberAvatars = 18;
 
   AvatarSelectionProvider(this._app) {
     _createAvatars();

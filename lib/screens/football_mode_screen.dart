@@ -8,8 +8,8 @@ import 'package:gamez/gamez.dart';
 
 // ignore: must_be_immutable
 class FootballModeScreen extends GameWidget {
-  FootballModeScreen(Application app) : super(game: FootballModeProvider(app)) {
-    print("yes");
+  FootballModeScreen(Application app, {Key? key})
+      : super(key: key, game: FootballModeProvider(app)) {
     _createQuitButton();
   }
 
@@ -23,7 +23,7 @@ class FootballModeScreen extends GameWidget {
         },
         icon: Icons.power_settings_new,
         primaryColor: Colors.red.shade500,
-        secondaryColor: Color.fromRGBO(0, 5, 25, 0.25),
+        secondaryColor: const Color.fromRGBO(0, 5, 25, 0.25),
       ),
     );
   }

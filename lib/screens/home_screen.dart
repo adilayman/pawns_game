@@ -10,6 +10,8 @@ import 'package:pawns_game/widgets/home_widgets/home_top_bar.dart';
 import 'package:pawns_game/widgets/standard_widgets/app_icon_button.dart';
 
 class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   /// Returns a row widget of all game modes.
   Widget _gameModeButtons(BuildContext context) {
     return Row(
@@ -40,8 +42,8 @@ class HomeScreen extends StatelessWidget {
         colors: app.standardGradient,
         child: Stack(
           children: [
-            HomeTopBar(),
-            AppNameWidget(),
+            const HomeTopBar(),
+            const AppNameWidget(),
             Align(
               alignment: Alignment.center,
               child: _gameModeButtons(context),
@@ -50,7 +52,7 @@ class HomeScreen extends StatelessWidget {
               onPressed: () => Navigator.pushNamed(context, "/prestart_screen"),
               icon: Icons.restart_alt,
               primaryColor: Colors.green.shade500,
-              secondaryColor: Color.fromRGBO(0, 5, 25, 0.25),
+              secondaryColor: const Color.fromRGBO(0, 5, 25, 0.25),
             ),
           ],
         ),

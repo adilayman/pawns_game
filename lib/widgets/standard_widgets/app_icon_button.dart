@@ -6,12 +6,13 @@ class AppIconButton extends StatelessWidget {
   final Color primaryColor;
   final Color secondaryColor;
 
-  AppIconButton({
+  const AppIconButton({
+    Key? key,
     required this.onPressed,
     required this.icon,
     required this.primaryColor,
     required this.secondaryColor,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +20,14 @@ class AppIconButton extends StatelessWidget {
       alignment: Alignment.bottomRight,
       child: ElevatedButton(
         onPressed: () => onPressed(),
+        style: ElevatedButton.styleFrom(
+          shape: const CircleBorder(),
+          padding: const EdgeInsets.all(7),
+          primary: secondaryColor,
+        ),
         child: Icon(
           icon,
           color: primaryColor,
-        ),
-        style: ElevatedButton.styleFrom(
-          shape: CircleBorder(),
-          padding: EdgeInsets.all(7),
-          primary: secondaryColor,
         ),
       ),
     );

@@ -7,7 +7,7 @@ import 'package:pawns_game/entities/arrow.dart';
 import 'package:gamez/gamez.dart';
 
 class FootballPawn extends CircularEntity {
-  Arrow _arrow = Arrow();
+  final Arrow _arrow = Arrow();
 
   bool _startPress = false;
   bool _canMove = false;
@@ -39,10 +39,7 @@ class FootballPawn extends CircularEntity {
 
   void _onLongPressMoveUpdate(Offset position) {
     if (!_startPress) return;
-    print('----');
-    print(_arrow.angle);
     _arrow.angle = pi - atan2(position.dy - y, position.dx - x);
-    print(_arrow.angle);
   }
 
   void _onLongPressEnd(Offset position) {

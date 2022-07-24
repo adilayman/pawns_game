@@ -7,11 +7,11 @@ class ExistingPlayerProvider extends ChangeNotifier {
   List<Player> players = [];
   Player? _currentPlayer;
 
-  Application _app;
+  final Application _app;
 
   ExistingPlayerProvider(this._app) {
     players = _app.players.values.toList();
-    if (players.length > 0) currentPlayer = players[0];
+    if (players.isNotEmpty) currentPlayer = players[0];
   }
 
   set currentPlayer(Player? player) {

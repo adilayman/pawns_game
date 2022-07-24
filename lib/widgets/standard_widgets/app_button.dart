@@ -6,19 +6,20 @@ class AppButton extends StatelessWidget {
   final double fontsize;
   final String text;
   final void Function() onPressed;
-  final Color color = Color.fromRGBO(0, 5, 25, 0.3);
+  final Color color = const Color.fromRGBO(0, 5, 25, 0.3);
 
-  AppButton({
+  const AppButton({
+    Key? key,
     this.width = 165,
     this.height = 65,
     this.fontsize = 16,
     required this.text,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height,
       width: width,
       child: ElevatedButton(

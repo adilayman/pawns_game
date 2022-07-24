@@ -18,19 +18,24 @@ class FootballTeam extends GameEntity {
   bool winner = false;
 
   FootballTeam(this.player, ImageRenderer? image, this.pawnsPositions)
-      : super(Vector(0, 0), Size(0, 0), image: image) {
-    for (Vector position in pawnsPositions)
+      : super(Vector(0, 0), const Size(0, 0), image: image) {
+    for (Vector position in pawnsPositions) {
       pawns.add(FootballPawn(Vector(position.x, position.y), image));
+    }
   }
 
   @override
   void render(Canvas canvas) {
-    for (FootballPawn pawn in pawns) pawn.render(canvas);
+    for (FootballPawn pawn in pawns) {
+      pawn.render(canvas);
+    }
   }
 
   @override
   void update(double dt) {
-    for (FootballPawn pawn in pawns) pawn.update(dt);
+    for (FootballPawn pawn in pawns) {
+      pawn.update(dt);
+    }
   }
 
   @override
@@ -47,7 +52,9 @@ class FootballTeam extends GameEntity {
 
   set turn(bool value) {
     _turn = value;
-    for (FootballPawn pawn in pawns) pawn.canMove = value;
+    for (FootballPawn pawn in pawns) {
+      pawn.canMove = value;
+    }
   }
 
   bool get turn => _turn;
@@ -55,7 +62,8 @@ class FootballTeam extends GameEntity {
   @override
   void handleGesture(Offset position, Gesture gesture) {
     if (!turn) return;
-    print(gesture);
-    for (FootballPawn pawn in pawns) pawn.handleGesture(position, gesture);
+    for (FootballPawn pawn in pawns) {
+      pawn.handleGesture(position, gesture);
+    }
   }
 }

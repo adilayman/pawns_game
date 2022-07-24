@@ -5,12 +5,12 @@ import 'package:pawns_game/services/file_manager.dart';
 
 class SaveFileManager {
   late FileManager _fileManager;
-  String _filename;
+  final String _filename;
 
-  Map<String, Player> _players = Map<String, Player>();
+  final Map<String, Player> _players = {};
 
   /// {name, avatar, wins}
-  int _numberInformation = 3;
+  final int _numberInformation = 3;
 
   SaveFileManager(this._filename);
 
@@ -51,8 +51,9 @@ class SaveFileManager {
     _fileManager.write("", mode: FileMode.write);
 
     // rewrite the map in the file.
-    for (Player player in _players.values)
+    for (Player player in _players.values) {
       _fileManager.write("${player.name} ${player.avatar} ${player.wins}\n");
+    }
   }
 
   /// Adds a new player to the save file.

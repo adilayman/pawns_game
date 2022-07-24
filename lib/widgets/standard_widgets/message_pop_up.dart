@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MessagePopUp extends StatelessWidget {
   final String message;
 
-  MessagePopUp({required this.message});
+  const MessagePopUp({Key? key, required this.message}) : super(key: key);
 
   /// Shows this message pop up.
   void show(BuildContext context) {
@@ -13,10 +13,10 @@ class MessagePopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Icon(Icons.info),
+      title: const Icon(Icons.info),
       content: Text(
         message,
-        style: TextStyle(
+        style: const TextStyle(
           fontFamily: "ProximasNova",
           fontSize: 18,
           fontWeight: FontWeight.normal,

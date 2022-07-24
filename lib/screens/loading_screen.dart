@@ -9,7 +9,7 @@ class LoadingScreen extends StatelessWidget {
   /// Redirection route after loading.
   final String route;
 
-  LoadingScreen({required this.route});
+  const LoadingScreen({Key? key, required this.route}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +19,17 @@ class LoadingScreen extends StatelessWidget {
       future: app.loading(),
       builder: (context, snapshot) {
         // When ready => redirect to the chosen route.
-        if (snapshot.connectionState == ConnectionState.done)
+        if (snapshot.connectionState == ConnectionState.done) {
           SchedulerBinding.instance.addPostFrameCallback((_) {
             Navigator.pushReplacementNamed(context, route);
           });
+        }
 
         return Scaffold(
           body: Container(
-            color: Color.fromRGBO(0, 1, 22, 1),
+            color: const Color.fromRGBO(0, 1, 22, 1),
             alignment: Alignment.center,
-            child: Image(
+            child: const Image(
               image: AssetImage("assets/png/app_logo.png"),
               width: 100,
               height: 100,

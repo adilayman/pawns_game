@@ -3,7 +3,7 @@ import 'package:gamez/gamez.dart';
 import 'package:pawns_game/providers/football_mode_provider.dart';
 
 class FootballField extends GameEntity {
-  FootballModeProvider _game;
+  final FootballModeProvider _game;
 
   ImageRenderer? _leftGoalSprite;
   ImageRenderer? _rightGoalSprite;
@@ -31,7 +31,8 @@ class FootballField extends GameEntity {
     Rect borders = Rect.fromLTWH(left, position.y + paint.strokeWidth / 2,
         size.width, size.height - paint.strokeWidth / 2);
 
-    RRect rrectBorders = RRect.fromRectAndRadius(borders, Radius.circular(0));
+    RRect rrectBorders =
+        RRect.fromRectAndRadius(borders, const Radius.circular(0));
 
     canvas.drawRRect(rrectBorders, paint);
 
@@ -52,7 +53,7 @@ class FootballField extends GameEntity {
   void _renderFieldBackground(Canvas canvas) {
     Paint paint = Paint()
       ..style = PaintingStyle.fill
-      ..color = Color.fromRGBO(0, 0, 0, 0.25);
+      ..color = const Color.fromRGBO(0, 0, 0, 0.25);
     canvas.drawRect(position.toOffset & size, paint);
   }
 

@@ -4,10 +4,10 @@ import 'package:pawns_game/providers/application.dart';
 import 'package:pawns_game/providers/existing_player_provider.dart';
 import 'package:pawns_game/providers/new_player_model.dart';
 
-enum PlayerPrestartState { Home, ExistingPlayer, NewPlayer }
+enum PlayerPrestartState { home, existingPlayer, newPlayer }
 
 class PlayerPrestartProvider extends ChangeNotifier {
-  PlayerPrestartState _state = PlayerPrestartState.Home;
+  PlayerPrestartState _state = PlayerPrestartState.home;
 
   late NewPlayerProvider newPlayerProvider;
   late ExistingPlayerProvider existingPlayerProvider;
@@ -18,21 +18,23 @@ class PlayerPrestartProvider extends ChangeNotifier {
   }
 
   String? get name {
-    if (_state == PlayerPrestartState.NewPlayer)
+    if (_state == PlayerPrestartState.newPlayer) {
       return newPlayerProvider.name;
-    else if (_state == PlayerPrestartState.ExistingPlayer)
+    } else if (_state == PlayerPrestartState.existingPlayer) {
       return existingPlayerProvider.name;
-    else
+    } else {
       return "";
+    }
   }
 
   String? get avatar {
-    if (_state == PlayerPrestartState.NewPlayer)
+    if (_state == PlayerPrestartState.newPlayer) {
       return newPlayerProvider.avatar;
-    else if (_state == PlayerPrestartState.ExistingPlayer)
+    } else if (_state == PlayerPrestartState.existingPlayer) {
       return existingPlayerProvider.avatar;
-    else
+    } else {
       return "";
+    }
   }
 
   set state(PlayerPrestartState value) {

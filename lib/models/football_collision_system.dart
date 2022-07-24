@@ -6,7 +6,7 @@ import 'package:gamez/gamez.dart';
 
 /// Football mode collision system
 class FootballCollisionSystem {
-  FootballModeProvider _game;
+  final FootballModeProvider _game;
 
   FootballCollisionSystem(this._game);
 
@@ -16,9 +16,9 @@ class FootballCollisionSystem {
     pawns.addAll(_game.secondTeam.pawns);
 
     for (int i = 0; i < pawns.length; i++) {
-      for (int j = i + 1; j < pawns.length; j++)
-        // pawn-pawn bouncing
+      for (int j = i + 1; j < pawns.length; j++) {
         _circleCircleBounce(pawns[i], pawns[j]);
+      }
 
       // pawn-ball bouncing
       _circleCircleBounce(pawns[i], _game.ball);
