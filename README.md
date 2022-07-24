@@ -5,21 +5,13 @@
 
 ## Description
 
-Pawns Game is a two-players offline game that contains different pawns game modes such as football mode and basketball mode.
+Pawns Game is a two-players offline game with different pawns game modes.
 
 Each player has to choose between creating a new player or choosing an existing one.
 
 Then choose a game mode to play.
 
 All players' wins will be saved at the end of the game.
-
-### Football mode
-
-Score two goals to win.
-
-### Basketball mode
-
-Not available in this version.
 
 ## Screenshots
 
